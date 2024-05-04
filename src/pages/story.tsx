@@ -16,13 +16,6 @@ export default function Home() {
         console.log("girl ontimeupdate", girlAudioRef?.current?.currentTime);
       };
       girlAudioRef.current.onended = () => {
-        boyAudioRef.current.play();
-        boyAudioRef.current.onended = () => {
-          playBtn.current.style.visibility = "visible";
-        };
-        boyAudioRef.current.ontimeupdate = function () {
-          console.log("boy ontimeupdate", boyAudioRef?.current?.currentTime);
-        };
       };
     }
 
@@ -51,7 +44,7 @@ export default function Home() {
 
       <div className={styles.conversation__block}>
         <div className={styles["conversation__message"]}>
-          <audio ref={girlAudioRef} className="w-100" src="/audio/girl.mp3">
+          <audio ref={girlAudioRef} className="w-100" src="/audio/merge_audio.mp3">
             Your browser does not support the audio element.
           </audio>
           <div className={styles.avatar}>
