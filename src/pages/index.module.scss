@@ -1,71 +1,14 @@
-%avatar {
-  position: relative;
-  width: 55px;
-  height: 55px;
-  border-radius: 100%;
-  overflow: hidden;
-}
-
-%message {
-  position: relative;
-  background-color: azure;
-  border-radius: 15px;
-  padding: 15px;
-  flex: 1;
-  font-size: 0.9rem;
-  box-shadow: 4px 4px 7px -4px #ccc;
-}
-
-%m-block {
-  display: flex;
-  gap: 20px;
-}
-
 .main {
   display: flex;
   justify-content: center;
   height: 100vh;
   flex-direction: column;
-
-  .billboard {
+  max-width: 450px;
+  flex: 1;
+  
+  .splash__container {
     position: relative;
-    flex: 0.7;
-    width: 100%;
-  }
-
-  .conversation__block {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-    padding: 20px;
     flex: 1;
-    justify-content: center;
-
-    .conversation {
-      &__message {
-        @extend %m-block;
-        &--reverse {
-          @extend %m-block;
-          flex-flow: row-reverse;
-          .avatar {
-            @extend %avatar;
-          }
-
-          .message {
-            @extend %message;
-          }
-        }
-        .avatar {
-          @extend %avatar;
-        }
-
-        .message {
-          @extend %message;
-        }
-      }
-    }
   }
 
   .action__block {
@@ -78,6 +21,8 @@
         flex: 1;
         background-color: #FE782F;
         opacity: 1;
+        font-size: 1.2rem;
+        padding: 20px;
     }
   }
 }

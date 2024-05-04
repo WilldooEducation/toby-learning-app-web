@@ -5,3 +5,8 @@
 body {
     overflow: hidden;
 }
+
+#__next {
+    display: flex;
+    justify-content: center;
+}
