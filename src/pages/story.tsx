@@ -16,6 +16,7 @@ export default function Home() {
         console.log("girl ontimeupdate", girlAudioRef?.current?.currentTime);
       };
       girlAudioRef.current.onended = () => {
+        playBtn.current.style.visibility = "visible";
       };
     }
 
