@@ -12,7 +12,7 @@
   padding: 15px;
   flex: 1;
   min-height: 100px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   box-shadow: 4px 4px 7px -4px #ccc;
 }
 
@@ -88,6 +88,7 @@
         opacity: 1;
         font-size: 1.2rem;
         padding: 20px;
+        visibility: hidden;
     }
   }
 }
