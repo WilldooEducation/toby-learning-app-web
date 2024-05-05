@@ -38,7 +38,7 @@ export default function Home() {
         <Image
           fill
           src="/images/billboard.svg"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "contain" }}
           alt="billboard"
         />
       </div>
@@ -52,7 +52,7 @@ export default function Home() {
             <Image
               fill
               src="/images/girl.svg"
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt="billboard"
             />
@@ -76,7 +76,7 @@ export default function Home() {
             <Image
               fill
               src="/images/boy.svg"
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt="billboard"
             />
