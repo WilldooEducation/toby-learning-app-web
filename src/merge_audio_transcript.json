@@ -1,0 +1,289 @@
+[
+    {
+        "text": "Hey",
+        "start": 320,
+        "end": 496,
+        "confidence": 0.96367,
+        "speaker": null
+    },
+    {
+        "text": "Rohan,",
+        "start": 496,
+        "end": 1088,
+        "confidence": 0.94828,
+        "speaker": null
+    },
+    {
+        "text": "did",
+        "start": 1174,
+        "end": 1406,
+        "confidence": 0.99979,
+        "speaker": null
+    },
+    {
+        "text": "you",
+        "start": 1430,
+        "end": 1590,
+        "confidence": 0.99962,
+        "speaker": null
+    },
+    {
+        "text": "see",
+        "start": 1590,
+        "end": 1766,
+        "confidence": 0.9999,
+        "speaker": null
+    },
+    {
+        "text": "the",
+        "start": 1766,
+        "end": 1950,
+        "confidence": 1.0,
+        "speaker": null
+    },
+    {
+        "text": "playground",
+        "start": 1982,
+        "end": 2510,
+        "confidence": 0.61194,
+        "speaker": null
+    },
+    {
+        "text": "next",
+        "start": 2582,
+        "end": 2838,
+        "confidence": 0.99992,
+        "speaker": null
+    },
+    {
+        "text": "to",
+        "start": 2886,
+        "end": 3070,
+        "confidence": 1.0,
+        "speaker": null
+    },
+    {
+        "text": "school?",
+        "start": 3102,
+        "end": 3674,
+        "confidence": 0.99951,
+        "speaker": null
+    },
+    {
+        "text": "It's",
+        "start": 4214,
+        "end": 4590,
+        "confidence": 0.75801,
+        "speaker": null
+    },
+    {
+        "text": "all",
+        "start": 4622,
+        "end": 4838,
+        "confidence": 0.99962,
+        "speaker": null
+    },
+    {
+        "text": "dug",
+        "start": 4886,
+        "end": 5158,
+        "confidence": 0.99207,
+        "speaker": null
+    },
+    {
+        "text": "up",
+        "start": 5206,
+        "end": 5390,
+        "confidence": 0.99985,
+        "speaker": null
+    },
+    {
+        "text": "now!",
+        "start": 5422,
+        "end": 5994,
+        "confidence": 0.99989,
+        "speaker": null
+    },
+    {
+        "text": "Yeah,",
+        "start": 6614,
+        "end": 7462,
+        "confidence": 0.96449,
+        "speaker": null
+    },
+    {
+        "text": "I",
+        "start": 7638,
+        "end": 7950,
+        "confidence": 1.0,
+        "speaker": null
+    },
+    {
+        "text": "heard",
+        "start": 7982,
+        "end": 8166,
+        "confidence": 0.99898,
+        "speaker": null
+    },
+    {
+        "text": "they're",
+        "start": 8190,
+        "end": 8350,
+        "confidence": 0.60334,
+        "speaker": null
+    },
+    {
+        "text": "going",
+        "start": 8382,
+        "end": 8550,
+        "confidence": 0.99493,
+        "speaker": null
+    },
+    {
+        "text": "to",
+        "start": 8582,
+        "end": 8726,
+        "confidence": 1.0,
+        "speaker": null
+    },
+    {
+        "text": "build",
+        "start": 8750,
+        "end": 8958,
+        "confidence": 0.99974,
+        "speaker": null
+    },
+    {
+        "text": "a",
+        "start": 9006,
+        "end": 9190,
+        "confidence": 1.0,
+        "speaker": null
+    },
+    {
+        "text": "huge",
+        "start": 9222,
+        "end": 9478,
+        "confidence": 0.99817,
+        "speaker": null
+    },
+    {
+        "text": "apartment",
+        "start": 9526,
+        "end": 9974,
+        "confidence": 0.9996,
+        "speaker": null
+    },
+    {
+        "text": "building",
+        "start": 10014,
+        "end": 10262,
+        "confidence": 0.99985,
+        "speaker": null
+    },
+    {
+        "text": "there.",
+        "start": 10318,
+        "end": 10914,
+        "confidence": 0.99863,
+        "speaker": null
+    },
+    {
+        "text": "I",
+        "start": 11214,
+        "end": 11526,
+        "confidence": 1.0,
+        "speaker": null
+    },
+    {
+        "text": "can't",
+        "start": 11550,
+        "end": 11774,
+        "confidence": 0.6547,
+        "speaker": null
+    },
+    {
+        "text": "believe",
+        "start": 11814,
+        "end": 12038,
+        "confidence": 0.99998,
+        "speaker": null
+    },
+    {
+        "text": "we",
+        "start": 12086,
+        "end": 12294,
+        "confidence": 0.99991,
+        "speaker": null
+    },
+    {
+        "text": "lost",
+        "start": 12334,
+        "end": 12582,
+        "confidence": 0.99995,
+        "speaker": null
+    },
+    {
+        "text": "our",
+        "start": 12638,
+        "end": 12806,
+        "confidence": 0.99982,
+        "speaker": null
+    },
+    {
+        "text": "playground",
+        "start": 12830,
+        "end": 13278,
+        "confidence": 0.9922,
+        "speaker": null
+    },
+    {
+        "text": "with",
+        "start": 13326,
+        "end": 13534,
+        "confidence": 0.99987,
+        "speaker": null
+    },
+    {
+        "text": "all",
+        "start": 13574,
+        "end": 13750,
+        "confidence": 0.9997,
+        "speaker": null
+    },
+    {
+        "text": "its",
+        "start": 13782,
+        "end": 13950,
+        "confidence": 0.98009,
+        "speaker": null
+    },
+    {
+        "text": "soft",
+        "start": 13982,
+        "end": 14278,
+        "confidence": 0.99502,
+        "speaker": null
+    },
+    {
+        "text": "grass",
+        "start": 14326,
+        "end": 14662,
+        "confidence": 0.94487,
+        "speaker": null
+    },
+    {
+        "text": "and",
+        "start": 14718,
+        "end": 14886,
+        "confidence": 1.0,
+        "speaker": null
+    },
+    {
+        "text": "marigolds.",
+        "start": 14910,
+        "end": 15454,
+        "confidence": 0.66571,
+        "speaker": null
+    }
+]
