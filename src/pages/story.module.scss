@@ -28,6 +28,15 @@
   flex-direction: column;
   max-width: 450px;
   flex: 1;
+  .timestamp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #f01;
+    color: #fff;
+    padding: 10px;
+  }
 
   .billboard {
     position: relative;
@@ -130,7 +139,8 @@
       opacity: 1;
       font-size: 1.2rem;
       padding: 20px;
-      visibility: hidden;
+      opacity: 0;
+      transition: all .5s linear;
     }
   }
 }

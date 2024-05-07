@@ -1,94 +1,67 @@
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
 import styles from "./story.module.scss";
-import { createRef, useEffect, useRef } from "react";
+import { createRef, useEffect, useRef, useState } from "react";
 import transcriptData from "@/merge_audio_transcript.json";
 import { useRouter } from "next/router";
 
 export default function Home() {
+  const [timestamp, setTimestamp] = useState(0);
+  const [lastHighlightedIndex, setLastHighlightedIndex] = useState(0);
+  const [word, setWord] = useState("");
   const girlAudioRef = useRef<any>(null);
   const girlTextRef = useRef<any>(null);
   const boyTextRef = useRef<any>(null);
   const boyAudioRef = useRef<any>(null);
   const playBtn = useRef<any>(null);
-  const router = useRouter()
-  useEffect(() => {
-    console.log(
-      girlAudioRef.current,
-      transcriptData,
-      girlTextRef.current.dataset.text
+  const router = useRouter();
+
+  const onPlaybackEnd = () => {
+    playBtn.current.style.opacity = 1;
+    boyTextRef.current.innerHTML =  boyTextRef.current.dataset.text
+  };
+
+  const onTimeChange = () => {
+    let currentTime = girlAudioRef?.current?.currentTime * 1000;
+    setTimestamp(currentTime);
+
+    const findIndex = transcriptData.findIndex(
+      e => currentTime >= e.start && currentTime <= e.end
     );
-    const girlTextSplit = girlTextRef.current.dataset.text.split(" ");
-    girlTextSplit[0] = `<span>${girlTextSplit[0]}</span>`;
-
-    girlTextRef.current.innerHTML = girlTextSplit.join(" ");
-
-    const boyTextSplit = boyTextRef.current.dataset.text.split(" ");
-
-    if (girlAudioRef.current) {
-      
-      let lastIndex = 0;
-      let totalIndex = lastIndex + 1;
-      girlAudioRef.current.ontimeupdate = function () {
-        let currentTime = girlAudioRef?.current?.currentTime * 1000;
-        console.log(
-          lastIndex,
-          "lastIndex",
-          totalIndex,
-          "totalIndex",
-          currentTime
-        );
-
-        for (let index = lastIndex; index < totalIndex; index++) {
-          let e = transcriptData[index];
-          if (!e) return;
-          let check = currentTime >= e.start && currentTime <= e.end;
-          let speaker = currentTime > 5994 ? "boy" : "girl";
-          if (check) {
-            lastIndex = index;
-            totalIndex += 1;
-            const takeTextSplit =
-              currentTime > 5994 ? boyTextSplit : girlTextSplit;
-            const textReset = takeTextSplit.map((element: string) => {
-              return element?.replace("<span>", "")?.replace("</span>", "");
-            });
-            if (index !== 0) {
-              textReset[index - 1] = textReset[index - 1]
-                ?.replace("<span>", "")
-                ?.replace("</span>", "");
-            }
-            let wordIndex = index;
-            if (speaker === "boy") {
-              wordIndex -= girlTextSplit.length;
-            }
-            if (textReset[wordIndex]) {
-              textReset[wordIndex] = `<span>${textReset[wordIndex]}</span>`;
-              if (speaker === "girl") {
-                girlTextRef.current.innerHTML = textReset.join(" ");
-              } else {
-                boyTextRef.current.innerHTML = textReset.join(" ");
-              }
-            } else {
-              console.log(e, index, currentTime);
-              totalIndex += 1;
-            }
-          } else {
-            // console.log(lastIndex, 'lastIndex', totalIndex, 'totalIndex', currentTime);
-            // console.log(e);
-          }
-        }
-
-        transcriptData.forEach((e, index) => {});
-      };
-      girlAudioRef.current.onended = () => {
-        playBtn.current.style.visibility = "visible";
-      };
-      girlAudioRef.current.play();
+    if (findIndex != -1) {
+      setWord(transcriptData[findIndex].text || "");
+      const girlTextSplit = girlTextRef.current.dataset.text.split(" ");
+      const boyTextSplit = boyTextRef.current.dataset.text.split(" ");
+      if (findIndex <= 14) {
+        girlTextSplit[findIndex] = `<span>${girlTextSplit[findIndex]}</span>`;
+        console.log(girlTextSplit.join(" "), findIndex);
+        girlTextRef.current.innerHTML = girlTextSplit.join(" ");
+        setLastHighlightedIndex(findIndex);
+      } else {
+        let bufferIndex = 15;
+        girlTextRef.current.innerHTML =  girlTextRef.current.dataset.text
+        let calculatedIndex = findIndex - bufferIndex;
+        boyTextSplit[
+          calculatedIndex
+        ] = `<span>${boyTextSplit[calculatedIndex]}</span>`;
+        console.log(boyTextSplit.join(" "), calculatedIndex);
+        boyTextRef.current.innerHTML = boyTextSplit.join(" ");
+        setLastHighlightedIndex(calculatedIndex);
+      }
     }
-  }, [girlAudioRef, boyAudioRef]);
+  };
+
+  useEffect(() => {
+    girlAudioRef.current.play();
+    girlAudioRef.current.ontimeupdate = onTimeChange;
+    girlAudioRef.current.onended = onPlaybackEnd;
+  }, []);
 
   return (
     <div className={styles.main}>
+      <div className={styles.timestamp}>
+        {timestamp} - {word}
+      </div>
       <div className={styles.billboard}>
         <Image
           fill
@@ -157,7 +130,7 @@ export default function Home() {
         <Button
           ref={playBtn}
           className={styles.btn}
-          onClick={()=>router.push('/1story')}
+          onClick={() => router.push("/1story")}
         >
           Continue
         </Button>
