@@ -33,8 +33,9 @@
     position: relative;
     flex: 0.7;
     width: 100%;
+    overflow: hidden;
     img {
-      object-fit: cover;
+      object-fit: cover !important;
       height: 100%;
       width: 100%;
     }

@@ -85,7 +85,7 @@ export default function Home() {
       };
       girlAudioRef.current.play();
     }
-  }, [girlAudioRef, boyAudioRef]);
+  }, [girlAudioRef]);
 
   return (
     <div className={styles.main}>
@@ -93,7 +93,7 @@ export default function Home() {
         <Image
           fill
           priority={true}
-          src="/images/billboard1.webp"
+          src="/images/billboard.svg"
           style={{ objectFit: "contain" }}
           alt="billboard"
         />
@@ -157,7 +157,7 @@ export default function Home() {
         <Button
           ref={playBtn}
           className={styles.btn}
-          onClick={()=>router.push('/1story')}
+          onClick={()=>router.push('/story')}
         >
           Continue
         </Button>
