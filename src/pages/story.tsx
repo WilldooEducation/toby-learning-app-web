@@ -26,39 +26,34 @@ export default function Home() {
   const boyAnimeRef = useRef<any>(null);
   const boyMessageRef = useRef<any>(null);
   const nextBtnRef = useRef<any>(null);
+
+  const easing = "easeInSine";
   // const girlAnimeRef = useRef<any>(null);
 
   const onPlaybackEnd = () => {
-    playBtn.current.style.display = 'block';
+    playBtn.current.style.display = "block";
     const moveUp = -20;
-    anime({
-      targets: girlAvatarRef.current,
-      translateY: moveUp,
-      easing: "easeInOutExpo",
-    });
 
     anime({
-      targets: girlMessageRef.current,
+      targets: [
+        girlAvatarRef.current,
+        girlMessageRef.current,
+        boyAvatarRef.current,
+        boyMessageRef.current,
+      ],
       translateY: moveUp,
-      easing: "easeInOutExpo",
-    });
-
-    anime({
-      targets: boyAvatarRef.current,
-      translateY: moveUp,
-      easing: "easeInOutExpo",
-    });
-
-    anime({
-      targets: boyMessageRef.current,
-      translateY: moveUp,
-      easing: "easeInOutExpo",
+      easing: "easeInExpo",
     });
 
     anime({
       targets: playBtn.current,
-      keyframes: [{ translateY: 300 }, { opacity: 1 }, {scale: .8},  { translateY: 0 }],
-      easing: "easeInOutExpo",
+      keyframes: [
+        { translateY: 300 },
+        { opacity: 1 },
+        { scale: 0.8 },
+        { translateY: 0 },
+      ],
+      easing,
     });
     boyTextRef.current.innerHTML = boyTextRef.current.dataset.text;
   };
@@ -95,33 +90,18 @@ export default function Home() {
 
   useEffect(() => {
     anime({
-      targets: girlAvatarRef.current,
-      keyframes: [{ translateY: 400 }, { opacity: 1 }, { translateY: 0 }],
+      targets: [girlAvatarRef.current, girlMessageRef.current],
+      keyframes: [{ translateY: 300 }, { opacity: 1 }, { translateY: 0 }],
       duration: 800,
-      easing: "easeInOutExpo",
+      easing,
     });
 
     anime({
-      targets: girlMessageRef.current,
-      keyframes: [{ translateY: 400 }, { opacity: 1 }, { translateY: 0 }],
-      duration: 800,
-      easing: "easeInOutExpo",
-    });
-
-    anime({
-      targets: boyAvatarRef.current,
-      keyframes: [{ translateY: 400 }, { opacity: 1 }, { translateY: 0 }],
-      duration: 800,
-      delay: 1800,
-      easing: "easeInOutExpo",
-    });
-
-    anime({
-      targets: boyMessageRef.current,
-      keyframes: [{ translateY: 400 }, { opacity: 1 }, { translateY: 0 }],
-      duration: 800,
-      delay: 1800,
-      easing: "easeInOutExpo",
+      targets: [boyAvatarRef.current, boyMessageRef.current],
+      keyframes: [{ translateY: 300 }, { opacity: 1 }, { translateY: 0 }],
+      duration: 1000,
+      delay: 3000,
+      easing,
     });
 
     setTimeout(() => {
@@ -129,6 +109,8 @@ export default function Home() {
         girlAudioRef.current?.play();
         girlAudioRef.current.ontimeupdate = onTimeChange;
         girlAudioRef.current.onended = onPlaybackEnd;
+        const girlTextSplit = girlTextRef.current.dataset.text.split(" ");
+        girlTextRef.current.innerHTML = girlTextSplit.join(" ");
       }
     }, 1800);
   }, []);
@@ -166,7 +148,7 @@ export default function Home() {
           <div ref={girlAvatarRef} className={styles.avatar}>
             <Image
               fill
-              src="/images/girl_1.png"
+              src="/images/girl_a.png"
               style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt="girl avatar"
@@ -194,7 +176,7 @@ export default function Home() {
           <div ref={boyAvatarRef} className={styles.avatar}>
             <Image
               fill
-              src="/images/boy_1.png"
+              src="/images/boy_a.png"
               style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt="billboard"
