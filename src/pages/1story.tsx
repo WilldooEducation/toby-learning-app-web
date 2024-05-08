@@ -29,6 +29,7 @@ export default function Home() {
   // const girlAnimeRef = useRef<any>(null);
 
   const onPlaybackEnd = () => {
+    playBtn.current.style.display = 'block';
     const moveUp = -20;
     anime({
       targets: girlAvatarRef.current,
