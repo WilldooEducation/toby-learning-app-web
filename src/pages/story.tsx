@@ -57,7 +57,7 @@ export default function Home() {
 
     anime({
       targets: playBtn.current,
-      keyframes: [{ translateY: 300 }, { opacity: 1 }, { translateY: 0 }],
+      keyframes: [{ translateY: 300 }, { opacity: 1 }, {scale: .8},  { translateY: 0 }],
       easing: "easeInOutExpo",
     });
     boyTextRef.current.innerHTML = boyTextRef.current.dataset.text;
