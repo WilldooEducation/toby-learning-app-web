@@ -170,6 +170,7 @@ export default function Home() {
               style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt="girl avatar"
+              priority={true}
             />
           </div>
           <div ref={girlMessageRef} className={styles.message}>
@@ -197,6 +198,7 @@ export default function Home() {
               style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt="billboard"
+              priority={true}
             />
           </div>
           <div ref={boyMessageRef} className={styles.message}>

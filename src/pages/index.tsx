@@ -5,6 +5,20 @@ import { useRouter } from 'next/navigation'
 
 export default function Home() {
   const router = useRouter()
+
+  // function preloadImage (src: string) {
+  //   return new Promise((resolve, reject) => {
+  //     const img:any = new Image(src: src)
+  //     img.onload = function() {
+  //       resolve(img)
+  //     }
+  //     img.onerror = img.onabort = function() {
+  //       reject(src)
+  //     }
+  //     img.src = src
+  //   })
+  // }
+  
   return (
     <div className={styles.main}>
       <div className={styles.splash__container}>
@@ -13,6 +27,7 @@ export default function Home() {
           src="/images/toby.svg"
           style={{ objectFit: "contain" }}
           alt="billboard"
+          priority={true}
         />
       </div>
       <div className={styles.action__block}>
