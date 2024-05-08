@@ -4,21 +4,62 @@ import styles from "./story.module.scss";
 import { createRef, useEffect, useRef, useState } from "react";
 import transcriptData from "@/merge_audio_transcript.json";
 import { useRouter } from "next/router";
+import anime from "animejs";
 
 export default function Home() {
   const [timestamp, setTimestamp] = useState(0);
   const [lastHighlightedIndex, setLastHighlightedIndex] = useState(0);
   const [word, setWord] = useState("");
   const girlAudioRef = useRef<any>(null);
+
   const girlTextRef = useRef<any>(null);
   const boyTextRef = useRef<any>(null);
   const boyAudioRef = useRef<any>(null);
   const playBtn = useRef<any>(null);
   const router = useRouter();
 
+  // animation
+  const girlAvatarRef = useRef<any>(null);
+  const girlAnimeRef = useRef<any>(null);
+  const girlMessageRef = useRef<any>(null);
+  const boyAvatarRef = useRef<any>(null);
+  const boyAnimeRef = useRef<any>(null);
+  const boyMessageRef = useRef<any>(null);
+  const nextBtnRef = useRef<any>(null);
+  // const girlAnimeRef = useRef<any>(null);
+
   const onPlaybackEnd = () => {
-    playBtn.current.style.opacity = 1;
-    boyTextRef.current.innerHTML =  boyTextRef.current.dataset.text
+    const moveUp = -20;
+    anime({
+      targets: girlAvatarRef.current,
+      translateY: moveUp,
+      easing: "easeInOutExpo",
+    });
+
+    anime({
+      targets: girlMessageRef.current,
+      translateY: moveUp,
+      easing: "easeInOutExpo",
+    });
+
+    anime({
+      targets: boyAvatarRef.current,
+      translateY: moveUp,
+      easing: "easeInOutExpo",
+    });
+
+    anime({
+      targets: boyMessageRef.current,
+      translateY: moveUp,
+      easing: "easeInOutExpo",
+    });
+
+    anime({
+      targets: playBtn.current,
+      keyframes: [{ translateY: 300 }, { opacity: 1 }, { translateY: 0 }],
+      easing: "easeInOutExpo",
+    });
+    boyTextRef.current.innerHTML = boyTextRef.current.dataset.text;
   };
 
   const onTimeChange = () => {
@@ -39,7 +80,7 @@ export default function Home() {
         setLastHighlightedIndex(findIndex);
       } else {
         let bufferIndex = 15;
-        girlTextRef.current.innerHTML =  girlTextRef.current.dataset.text
+        girlTextRef.current.innerHTML = girlTextRef.current.dataset.text;
         let calculatedIndex = findIndex - bufferIndex;
         boyTextSplit[
           calculatedIndex
@@ -52,10 +93,50 @@ export default function Home() {
   };
 
   useEffect(() => {
-    girlAudioRef.current.play();
-    girlAudioRef.current.ontimeupdate = onTimeChange;
-    girlAudioRef.current.onended = onPlaybackEnd;
+    anime({
+      targets: girlAvatarRef.current,
+      keyframes: [{ translateY: 400 }, { opacity: 1 }, { translateY: 0 }],
+      duration: 800,
+      easing: "easeInOutExpo",
+    });
+
+    anime({
+      targets: girlMessageRef.current,
+      keyframes: [{ translateY: 400 }, { opacity: 1 }, { translateY: 0 }],
+      duration: 800,
+      easing: "easeInOutExpo",
+    });
+
+    anime({
+      targets: boyAvatarRef.current,
+      keyframes: [{ translateY: 400 }, { opacity: 1 }, { translateY: 0 }],
+      duration: 800,
+      delay: 1800,
+      easing: "easeInOutExpo",
+    });
+
+    anime({
+      targets: boyMessageRef.current,
+      keyframes: [{ translateY: 400 }, { opacity: 1 }, { translateY: 0 }],
+      duration: 800,
+      delay: 1800,
+      easing: "easeInOutExpo",
+    });
+
+    setTimeout(() => {
+      if (girlAudioRef.current) {
+        girlAudioRef.current?.play();
+        girlAudioRef.current.ontimeupdate = onTimeChange;
+        girlAudioRef.current.onended = onPlaybackEnd;
+      }
+    }, 1800);
   }, []);
+
+  // useEffect(() => {
+  //   girlAudioRef.current.play();
+  //   girlAudioRef.current.ontimeupdate = onTimeChange;
+  //   girlAudioRef.current.onended = onPlaybackEnd;
+  // }, []);
 
   return (
     <div className={styles.main}>
@@ -81,21 +162,21 @@ export default function Home() {
           >
             Your browser does not support the audio element.
           </audio>
-          <div className={styles.avatar}>
+          <div ref={girlAvatarRef} className={styles.avatar}>
             <Image
               fill
-              src="/images/girl.svg"
+              src="/images/girl_1.png"
               style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              alt="billboard"
+              alt="girl avatar"
             />
           </div>
-          <div className={styles.message}>
+          <div ref={girlMessageRef} className={styles.message}>
             <p
               ref={girlTextRef}
               data-text={`Hey Rohan, did you see the playground next to school? It's all dug up now!`}
             >
-              {`Hey Rohan, did you see the playground next to school? It's all dug up now!`}
+              <span className={styles["dot-typing"]}></span>
             </p>
           </div>
         </div>
@@ -108,20 +189,22 @@ export default function Home() {
           >
             Your browser does not support the audio element.
           </audio>
-          <div className={styles.avatar}>
+          <div ref={boyAvatarRef} className={styles.avatar}>
             <Image
               fill
-              src="/images/boy.svg"
+              src="/images/boy_1.png"
               style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt="billboard"
             />
           </div>
-          <div className={styles.message}>
+          <div ref={boyMessageRef} className={styles.message}>
             <p
               ref={boyTextRef}
               data-text={`Yeah, I heard they're going to build a huge apartment building there. I can't believe we lost our playground with all its soft grass and marigolds.`}
-            >{`Yeah, I heard they're going to build a huge apartment building there. I can't believe we lost our playground with all its soft grass and marigolds.`}</p>
+            >
+              <span className={styles["dot-typing"]}></span>
+            </p>
           </div>
         </div>
       </div>

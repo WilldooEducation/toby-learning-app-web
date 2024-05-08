@@ -1,24 +1,79 @@
 %avatar {
   position: relative;
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(400px);
+  border-radius: 100px 100px 0px 100px;
+  box-shadow: 5px 5px 0px 0px #fde8da;
+  border: 2px solid #fde8da !important;
+  img {
+    overflow: hidden !important;
+    padding: 3px !important;
+    border-radius: 100px 100px 0px 100px !important;
+  }
 }
 
 %message {
   position: relative;
   border-radius: 15px;
   padding: 15px;
-  flex: 1;
-  min-height: 100px;
+  max-width: 75%;
+  min-width: 80px;
+  opacity: 0;
   font-size: 1rem;
-  box-shadow: 4px 4px 7px -4px #ccc;
+  color: #353535;
+  background-color: #ffe8da;
+  box-shadow: 5px 5px 0px 0px #f67830;
+  border-radius: 20px 20px 20px 0px;
+}
+
+
+.dot-typing {
+  position: relative;
+  display: block;
+  left: -9978px;
+  top: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #f67830;
+  color: #f67830;
+  box-shadow: 9984px 0 0 0 #f67830, 9999px 0 0 0 #f67830, 10014px 0 0 0 #f67830;
+  animation: dot-typing 1.5s infinite linear;
+}
+
+@keyframes dot-typing {
+  0% {
+    box-shadow: 9984px 0 0 0 #f67830, 9999px 0 0 0 #f67830, 10014px 0 0 0 #f67830;
+  }
+  16.667% {
+    box-shadow: 9984px -10px 0 0 #f67830, 9999px 0 0 0 #f67830, 10014px 0 0 0 #f67830;
+  }
+  33.333% {
+    box-shadow: 9984px 0 0 0 #f67830, 9999px 0 0 0 #f67830, 10014px 0 0 0 #f67830;
+  }
+  50% {
+    box-shadow: 9984px 0 0 0 #f67830, 9999px -10px 0 0 #f67830, 10014px 0 0 0 #f67830;
+  }
+  66.667% {
+    box-shadow: 9984px 0 0 0 #f67830, 9999px 0 0 0 #f67830, 10014px 0 0 0 #f67830;
+  }
+  83.333% {
+    box-shadow: 9984px 0 0 0 #f67830, 9999px 0 0 0 #f67830, 10014px -10px 0 0 #f67830;
+  }
+  100% {
+    box-shadow: 9984px 0 0 0 #f67830, 9999px 0 0 0 #f67830, 10014px 0 0 0 #f67830;
+  }
 }
 
 %m-block {
   display: flex;
-  gap: 20px;
+  gap: 15px;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 
 .main {
@@ -58,7 +113,7 @@
     gap: 35px;
     padding: 20px;
     flex: 1;
-    justify-content: center;
+    justify-content: end;
 
     .conversation {
       &__message {
@@ -68,10 +123,14 @@
           flex-flow: row-reverse;
           .avatar {
             @extend %avatar;
+            border-radius: 100px 100px 100px 0px;
+            box-shadow: -5px 5px 0px 0px #fde8da;
           }
 
           .message {
             @extend %message;
+            box-shadow: -5px 5px 0px 0px #f67830;
+            border-radius: 20px 20px 0px 20px;
             p {
               span {
                 position: relative;
@@ -80,14 +139,14 @@
                 &::after {
                   content: "";
                   background-color: #FF9800;
-                  opacity: 0.5;
+                  opacity: 1;
                   position: absolute;
                   top: -3px;
                   left: -3px;
                   width: 117%;
                   height: 100%;
                   padding: 12px;
-                  z-index: 1;
+                  z-index: -3;
                   border-radius: 5px;
                   transition: all .5s linear;
                 }
@@ -109,14 +168,14 @@
               &::after {
                 content: "";
                 background-color: #FF9800;
-                opacity: 0.5;
+                opacity: 1;
                 position: absolute;
                 top: -3px;
                 left: -3px;
                 width: 117%;
                 height: 100%;
                 padding: 12px;
-                z-index: 1;
+                z-index: -3;
                 border-radius: 5px;
                 transition: all .5s linear;
               }
@@ -140,7 +199,6 @@
       font-size: 1.2rem;
       padding: 20px;
       opacity: 0;
-      transition: all .5s linear;
     }
   }
 }
