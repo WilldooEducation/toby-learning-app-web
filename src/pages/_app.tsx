@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </Head>
-      <main className={openSans.className} style={{width: "100%"}}>
+      <main className={openSans.className} style={{width: "100%", display: "flex", justifyContent: "center"}}>
         <Component {...pageProps} className={openSans.className} />
       </main>
     </ThemeProvider>
