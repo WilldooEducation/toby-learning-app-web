@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
-import styles from "./story.module.scss";
-import { createRef, useEffect, useRef, useState } from "react";
+import styles from "../pages/story.module.scss";
+import { createRef, useCallback, useEffect, useRef, useState } from "react";
 import transcriptData from "@/merge_audio_transcript.json";
 import { useRouter } from "next/router";
 import anime from "animejs";
 
-export default function Home(props: any) {
-  console.log(props)
+export default function Chapter(props: any) {
+  console.log(props);
   const [timestamp, setTimestamp] = useState(0);
   const [lastHighlightedIndex, setLastHighlightedIndex] = useState(0);
   const [word, setWord] = useState("");
@@ -59,7 +59,7 @@ export default function Home(props: any) {
     boyTextRef.current.innerHTML = boyTextRef.current.dataset.text;
   };
 
-  const onTimeChange = () => {
+  const onTimeChange = useCallback(() => {
     let currentTime = girlAudioRef?.current?.currentTime * 1000;
     setTimestamp(currentTime);
 
@@ -70,13 +70,13 @@ export default function Home(props: any) {
       setWord(transcriptData[findIndex].text || "");
       const girlTextSplit = girlTextRef.current.dataset.text.split(" ");
       const boyTextSplit = boyTextRef.current.dataset.text.split(" ");
-      if (findIndex <= 14) {
+      if (findIndex <= props.item.speaker_audio_buffer_index - 1) {
         girlTextSplit[findIndex] = `<span>${girlTextSplit[findIndex]}</span>`;
         console.log(girlTextSplit.join(" "), findIndex);
         girlTextRef.current.innerHTML = girlTextSplit.join(" ");
         setLastHighlightedIndex(findIndex);
       } else {
-        let bufferIndex = 15;
+        let bufferIndex = props.item.speaker_audio_buffer_index;
         girlTextRef.current.innerHTML = girlTextRef.current.dataset.text;
         let calculatedIndex = findIndex - bufferIndex;
         boyTextSplit[
@@ -87,34 +87,37 @@ export default function Home(props: any) {
         setLastHighlightedIndex(calculatedIndex);
       }
     }
-  };
+  }, [props.item.speaker_audio_buffer_index]);
 
   useEffect(() => {
-    anime({
-      targets: [girlAvatarRef.current, girlMessageRef.current],
-      keyframes: [{ translateY: 300 }, { opacity: 1 }, { translateY: 0 }],
-      duration: 800,
-      easing,
-    });
+    if (props.item.start) {
+      anime({
+        targets: [girlAvatarRef.current, girlMessageRef.current],
+        keyframes: [{ translateY: 300 }, { opacity: 1 }, { translateY: 0 }],
+        duration: 800,
+        easing,
+      });
 
-    anime({
-      targets: [boyAvatarRef.current, boyMessageRef.current],
-      keyframes: [{ translateY: 300 }, { opacity: 1 }, { translateY: 0 }],
-      duration: 1000,
-      delay: 3000,
-      easing,
-    });
+      anime({
+        targets: [boyAvatarRef.current, boyMessageRef.current],
+        keyframes: [{ translateY: 300 }, { opacity: 1 }, { translateY: 0 }],
+        duration: 1000,
+        delay: 3000,
+        easing,
+      });
 
-    setTimeout(() => {
-      if (girlAudioRef.current) {
-        girlAudioRef.current?.play();
-        girlAudioRef.current.ontimeupdate = onTimeChange;
-        girlAudioRef.current.onended = onPlaybackEnd;
-        const girlTextSplit = girlTextRef.current.dataset.text.split(" ");
-        girlTextRef.current.innerHTML = girlTextSplit.join(" ");
-      }
-    }, 1800);
-  }, []);
+      setTimeout(() => {
+        if (girlAudioRef.current) {
+          girlAudioRef.current?.play();
+          girlAudioRef.current.ontimeupdate = onTimeChange;
+          girlAudioRef.current.onended = onPlaybackEnd;
+          const girlTextSplit = girlTextRef.current.dataset.text.split(" ");
+          girlTextSplit[0] = `<span>${girlTextSplit[0]}</span>`;
+          girlTextRef.current.innerHTML = girlTextSplit.join(" ");
+        }
+      }, 1800);
+    }
+  }, [onTimeChange, props.item.speaker_audio_buffer_index, props.item.start]);
 
   // useEffect(() => {
   //   girlAudioRef.current.play();
@@ -131,7 +134,7 @@ export default function Home(props: any) {
         <Image
           fill
           priority={true}
-          src="/images/billboard1.webp"
+          src={props.item.billboard}
           style={{ objectFit: "contain" }}
           alt="billboard"
         />
@@ -139,17 +142,13 @@ export default function Home(props: any) {
 
       <div className={styles.conversation__block}>
         <div className={styles["conversation__message"]}>
-          <audio
-            ref={girlAudioRef}
-            className="w-100"
-            src="/audio/merge_audio.mp3"
-          >
+          <audio ref={girlAudioRef} className="w-100" src={props.item.audio}>
             Your browser does not support the audio element.
           </audio>
           <div ref={girlAvatarRef} className={styles.avatar}>
             <Image
               fill
-              src="/images/girl_a.png"
+              src={props.item.speakers[0].avatar_img}
               style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt="girl avatar"
@@ -157,27 +156,16 @@ export default function Home(props: any) {
             />
           </div>
           <div ref={girlMessageRef} className={styles.message}>
-            <p
-              ref={girlTextRef}
-              data-text={`Hey Rohan, did you see the playground next to school? It's all dug up now!`}
-            >
+            <p ref={girlTextRef} data-text={props.item.speakers[0].message}>
               <span className={styles["dot-typing"]}></span>
             </p>
           </div>
         </div>
         <div className={styles["conversation__message--reverse"]}>
-          <audio
-            ref={boyAudioRef}
-            id="boyAudioPlay"
-            className="w-100"
-            src="/audio/boy.mp3"
-          >
-            Your browser does not support the audio element.
-          </audio>
           <div ref={boyAvatarRef} className={styles.avatar}>
             <Image
               fill
-              src="/images/boy_a.png"
+              src={props.item.speakers[1].avatar_img}
               style={{ objectFit: "contain" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               alt="billboard"
@@ -185,10 +173,7 @@ export default function Home(props: any) {
             />
           </div>
           <div ref={boyMessageRef} className={styles.message}>
-            <p
-              ref={boyTextRef}
-              data-text={`Yeah, I heard they're going to build a huge apartment building there. I can't believe we lost our playground with all its soft grass and marigolds.`}
-            >
+            <p ref={boyTextRef} data-text={props.item.speakers[1].message}>
               <span className={styles["dot-typing"]}></span>
             </p>
           </div>
@@ -199,7 +184,7 @@ export default function Home(props: any) {
         <Button
           ref={playBtn}
           className={styles.btn}
-          onClick={() => router.push("/1story")}
+          onClick={() => props.onNext(props)}
         >
           Continue
         </Button>

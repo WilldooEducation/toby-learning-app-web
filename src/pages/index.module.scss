@@ -5,10 +5,12 @@
   flex-direction: column;
   max-width: 450px;
   flex: 1;
+  background-color: #fff;
   
   .splash__container {
     position: relative;
     flex: 1;
+    background-color: #fff;
   }
 
   .action__block {
@@ -26,4 +28,12 @@
         transform: scale(.8);
     }
   }
+}
+
+.story_container {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
 }
