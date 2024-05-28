@@ -9,6 +9,12 @@ const nextConfig = {
         port: '',
         pathname: '/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'toby-app-dev-ui.s3.ap-south-1.amazonaws.com',
+        port: '',
+        pathname: '/images/**',
+      },
     ],
   },
 }
