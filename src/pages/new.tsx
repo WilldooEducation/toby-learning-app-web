@@ -33,15 +33,15 @@ export default function Home() {
   // https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk2/poster_bg_std07_science_ch1_bl02_pnl_001/poster_bg_std07_science_ch1_bl02_pnl_001_1_5x.webp
 
   const { query } = router;
-  
-  console.log(query.block, 'QUERY')
+
+  console.log(query.block, "QUERY");
 
   useEffect(() => {
     // search query string changed
     setStoryInfo({
-        bl: query.block || 1,
-        pnl: query.panel || 1,
-      })
+      bl: query.block || 1,
+      pnl: query.panel || 1,
+    });
   }, [query]);
 
   const [storyInfo, setStoryInfo] = useState({
@@ -60,8 +60,7 @@ export default function Home() {
           <div className={styles.overlay_image}></div>
           <Image
             fill
-            src={`https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk${storyInfo.bl
-            .toString()}/poster_bg_std07_science_ch1_bl${storyInfo.bl
+            src={`https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk${storyInfo.bl.toString()}/poster_bg_std07_science_ch1_bl${storyInfo.bl
               .toString()
               .padStart(2, "0")}_pnl_${storyInfo.pnl
               .toString()
@@ -75,8 +74,41 @@ export default function Home() {
             priority={true}
           />
           <div className={styles.info_container}>
-            <div className={styles.image_container}></div>
+            <div className={styles.image_container}>
+              <div className={styles.action_items}>
+                {storyInfo.pnl > 1 &&<Image priority src="/images/back.svg" alt="Back" onClick={() => {
+                      setStoryInfo({
+                        bl: storyInfo.bl,
+                        pnl: storyInfo.pnl - 1,
+                      });
+                    }} width={40} height={40}/>}
+              </div>
+              <div className={styles.image_frame}>
+                <Image
+                  fill
+                  src={`https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk${storyInfo.bl.toString()}/poster_bg_std07_science_ch1_bl${storyInfo.bl
+                    .toString()
+                    .padStart(2, "0")}_pnl_${storyInfo.pnl
+                    .toString()
+                    .padStart(
+                      3,
+                      "0"
+                    )}/poster_bg_std07_science_ch1_bl${storyInfo.bl
+                    .toString()
+                    .padStart(2, "0")}_pnl_${storyInfo.pnl
+                    .toString()
+                    .padStart(3, "0")}_1_5x.webp`}
+                  style={{ objectFit: "contain" }}
+                  alt="billboard"
+                  priority={true}
+                />
+              </div>
+            </div>
             <div className={styles.message_container}>
+            <div className={styles.action_items}>
+                <Image priority src="/images/audio.svg" alt="Back" width={40} height={40}/>
+                <Image priority src="/images/refresh.svg" alt="Back" width={40} height={40}/>
+              </div>
               <div className={styles.message_block}>
                 <div className={styles.text_block}>
                   <p>{`Can you imagine what would happen if photosynthesis didn't occur on Earth?`}</p>
@@ -86,7 +118,7 @@ export default function Home() {
                     onClick={() => {
                       setStoryInfo({
                         bl: storyInfo.bl,
-                        pnl: storyInfo.pnl+1,
+                        pnl: storyInfo.pnl + 1,
                       });
                     }}
                   >
