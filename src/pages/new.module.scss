@@ -16,6 +16,15 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
+  .background_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
   img {
     object-fit: cover !important;
     background: rgba(255, 255, 255, 0.01);
@@ -40,7 +49,7 @@
   display: flex;
   z-index: 1;
   flex-direction: column;
-  .action_items{
+  .action_items {
     display: flex;
     margin: 20px 25px 0 25px;
     height: 40px;
@@ -50,6 +59,8 @@
     display: flex;
     position: relative;
     flex-direction: column;
+    max-height: 50vh;
+    min-height: 50vh;
     .image_frame {
       opacity: 0;
       position: relative;
@@ -77,46 +88,103 @@
       justify-content: center;
       gap: 5px;
     }
-
-    .message_block {
+    .message_parent {
       flex: 1;
-      background-color: #f01;
-      background-color: #00000050;
-      height: 100%;
-      border-radius: 20px 20px 0px 0px;
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
-      .text_block {
-        flex: 1;
+      justify-content: flex-end;
+      align-items: center;
+      .message_block {
+        background-color: #f01;
+        background-color: #00000050;
+        height: 100%;
+        width: 100%;
+        border-radius: 20px 20px 0px 0px;
         display: flex;
         align-items: center;
-        p {
-          font-weight: 600;
-          font-size: 1.2rem;
-          text-align: center;
-          color: #fff;
+        justify-content: center;
+        flex-direction: column;
+        .text_block {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          p {
+            font-weight: 600;
+            font-size: 1.375rem;
+            text-align: center;
+            color: #fff;
+            line-height: 170%; /* 37.4px */
+            letter-spacing: 0.66px;
+            padding: 0 27px;
+          }
         }
-      }
-      .button_block {
-        width: 100%;
-        padding: 15px;
-        margin-bottom: 50px;
-        transition: all .35s ease-in-out;
-        &:hover {
-          transform: scale(.95);
-          transition: all .35s ease-in-out;
-        }
-        button {
-          background: rgba(255, 255, 255, 0.25);
-          padding: 10px 50px;
-          border-radius: 8px;
+        .button_block {
           width: 100%;
-          color: #fff;
-          backdrop-filter: blur(100px);
+          padding: 15px;
+          margin-bottom: 50px;
+          transition: all 0.35s ease-in-out;
+          &:hover {
+            transform: scale(0.95);
+            transition: all 0.35s ease-in-out;
+          }
+          button {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 10px 50px;
+            border-radius: 8px;
+            width: 100%;
+            color: #fff;
+            backdrop-filter: blur(100px);
+          }
         }
       }
     }
+  }
+}
+
+$dotColor: #fff;
+
+.dot-typing {
+  position: relative;
+  display: block;
+  left: -10000px;
+  top: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: $dotColor;
+  color: $dotColor;
+  box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+    10014px 0 0 0 $dotColor;
+  animation: dot-typing 1.5s infinite linear;
+}
+
+@keyframes dot-typing {
+  0% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  16.667% {
+    box-shadow: 9984px -10px 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  33.333% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  50% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px -10px 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  66.667% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  83.333% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px -10px 0 0 $dotColor;
+  }
+  100% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
   }
 }

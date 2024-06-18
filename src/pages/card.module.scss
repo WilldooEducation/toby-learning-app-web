@@ -1,0 +1,32 @@
+.main {
+  position: relative;
+  padding: 10px 10px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  height: 100vh;
+  .card {
+    min-height: 145px;
+    /* height: 188px; */
+    width: 100%;
+    /* background: #f01; */
+    position: relative;
+    /* transform: translateY(14px); */
+    &__container {
+      /* position: absolute; */
+      height: 200px;
+      width: 100%;
+      /* top: 0px; */
+      background: yellow;
+      border-radius: 30px;
+      transform: perspective(1700px) translateY(1px) rotateX(-10deg)
+        translateZ(-31px);
+      box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 2px -11px 33px -8px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    }
+  }
+}
