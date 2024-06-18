@@ -111,14 +111,7 @@ export default function Home() {
           <Button
             className={styles.btn}
             onClick={() => {
-              if (splashScreenRef.current)
-                splashScreenRef.current.style.zIndex = -Math.abs(
-                  items.length + 1
-                );
-
-              items[0].start = true;
-              items[0].front_index = 1;
-              setItems([...items]);
+              router.push('/new')
             }}
           >
             Continue

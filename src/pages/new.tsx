@@ -38,6 +38,7 @@ export default function Home() {
   const imageFrame = useRef<any>(null);
   const messageText = useRef<any>(null);
   const backgroundImage = useRef<any>(null);
+  const continueButton = useRef<any>(null);
   const messageBlock = useRef<any>(null);
   const [preloadImages, setPreloadImages] = useState<any>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -191,6 +192,15 @@ export default function Home() {
         easing,
       }).finished;
     }
+    anime({
+      targets: continueButton.current,
+      duration: duration,
+      scale: [
+        {value: .1, easing: 'easeOutSine', duration: 100},
+        {value: 1, easing: 'easeInOutQuad', duration: 100}
+      ],
+      easing,
+    }).finished;
     messageText.current.innerHTML = `<span class=${styles["dot-typing"]}></span>`;
     // await anime({
     //   targets: messageBlock.current,
@@ -390,7 +400,7 @@ export default function Home() {
                       <span className={styles["dot-typing"]}></span>
                     </p>
                   </div>
-                  <div className={styles.button_block}>
+                  <div ref={continueButton} className={styles.button_block}>
                     <button onClick={onNext}>Continue</button>
                   </div>
                 </div>
