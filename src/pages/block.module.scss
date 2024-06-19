@@ -1,0 +1,199 @@
+.main {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  max-width: 450px;
+  flex: 1;
+  background-color: #fff;
+}
+
+.splash_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  .background_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+  img {
+    object-fit: cover !important;
+    background: rgba(255, 255, 255, 0.01);
+    // filter: blur(40px);
+    // transform: scale(1.1);
+    // backdrop-filter: brightness(0.5);
+    // backdrop-filter: contrast(0.5);
+  }
+  .overlay_image {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(47.5px);
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    // display: none;
+  }
+}
+.info_container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  z-index: 1;
+  flex-direction: column;
+  .action_items {
+    display: flex;
+    margin: 20px 25px 0 25px;
+    height: 40px;
+  }
+  .image_container {
+    flex: 1;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    max-height: 50vh;
+    min-height: 50vh;
+    .image_frame {
+      opacity: 0;
+      position: relative;
+      flex: 1;
+      border-radius: 25px;
+      overflow: hidden;
+      margin: 20px 20px 10px 20px;
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+  .message__container {
+    flex: 1;
+    width: 100%;
+    padding: 15px 15px 0 15px;
+    display: flex;
+    flex-direction: column;
+    .message__action-items {
+      display: flex;
+      padding: 0 25px 15px 25px;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .message_parent {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      position: relative;
+      .message_avatar_girl {
+        position: absolute;
+        top: -50px;
+        left: 15px;
+        z-index: -1;
+      }
+      .message_avatar_boy {
+        position: absolute;
+        top: -50px;
+        right: 15px;
+        z-index: -1;
+      }
+      .message_block {
+        background-color: #f01;
+        background-color: #00000050;
+        height: 100%;
+        width: 100%;
+        border-radius: 20px 20px 0px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .text_block {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          p {
+            font-weight: 600;
+            font-size: 1.375rem;
+            text-align: center;
+            color: #fff;
+            line-height: 170%; /* 37.4px */
+            letter-spacing: 0.66px;
+            padding: 0 27px;
+          }
+        }
+        .button_block {
+          width: 100%;
+          padding: 15px;
+          margin-bottom: 50px;
+          transition: all 0.35s ease-in-out;
+          button {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 10px 50px;
+            border-radius: 8px;
+            width: 100%;
+            color: #fff;
+            backdrop-filter: blur(100px);
+          }
+        }
+      }
+    }
+  }
+}
+
+$dotColor: #fff;
+
+.dot-typing {
+  position: relative;
+  display: block;
+  left: -10000px;
+  top: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: $dotColor;
+  color: $dotColor;
+  box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+    10014px 0 0 0 $dotColor;
+  animation: dot-typing 1.5s infinite linear;
+}
+
+@keyframes dot-typing {
+  0% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  16.667% {
+    box-shadow: 9984px -10px 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  33.333% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  50% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px -10px 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  66.667% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+  83.333% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px -10px 0 0 $dotColor;
+  }
+  100% {
+    box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
+      10014px 0 0 0 $dotColor;
+  }
+}
