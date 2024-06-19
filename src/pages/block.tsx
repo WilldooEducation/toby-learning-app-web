@@ -35,14 +35,19 @@ export default function Home() {
   // https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk2/poster_bg_std07_science_ch1_bl02_pnl_001/poster_bg_std07_science_ch1_bl02_pnl_001_1_5x.webp
   const easing = "easeInSine";
   const { query } = router;
+
   const imageFrame = useRef<any>(null);
   const messageText = useRef<any>(null);
   const backgroundImage = useRef<any>(null);
   const continueButton = useRef<any>(null);
   const messageBlock = useRef<any>(null);
+  const imageBlock = useRef<any>(null);
+  const backButton = useRef<any>(null);
+  const messageActionBlock = useRef<any>(null);
   const [preloadImages, setPreloadImages] = useState<any>({});
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
+  const [currentScreenType, setCurrentScreenType] = useState("story");
   // function preloadImage (src: string) {
   //   return new Promise((resolve, reject) => {
   //     const img:any = new Image(src: src)
@@ -79,6 +84,33 @@ export default function Home() {
       message_text:
         "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
       audio: "",
+      question: {
+        panel_type: "question",
+        panel_id: "_1",
+        image:
+          "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
+        question:
+          "What Are The Primary Components of Food Discussed in the Classroom?",
+        options: [
+          {
+            title: "Water and Soil",
+            value: "Water and Soil",
+          },
+          {
+            title: "Carbohydrates, Proteins, and Fats",
+            value: "Carbohydrates, Proteins, and Fats",
+          },
+          {
+            title: "Gases and Liquids",
+            value: "Gases and Liquids",
+          },
+          {
+            title: "Metals and Plastics",
+            value: "Gases and Liquids",
+          },
+        ],
+        audio: "",
+      },
     },
     {
       panel_type: "story",
@@ -186,16 +218,6 @@ export default function Home() {
     let _messageIndex = messageIndex;
     let _selectedIndex = selectedIndex;
     let _preloadImages = preloadImages;
-    const stopAnimate =
-      block[_selectedIndex].panel_id === block[_selectedIndex + 1]?.panel_id;
-    if (!stopAnimate) {
-      anime({
-        targets: backgroundImage.current,
-        duration: duration,
-        keyframes: [{ opacity: 0.8 }],
-        easing,
-      }).finished;
-    }
     anime({
       targets: continueButton.current,
       duration: duration,
@@ -205,7 +227,95 @@ export default function Home() {
       ],
       easing,
     }).finished;
+
+    if (block[_selectedIndex].question && currentScreenType === "story") {
+      await anime({
+        targets: imageFrame.current,
+        duration: duration,
+        keyframes: [
+          {
+            // ************** animation type **********
+            rotate: "-45deg",
+            translateX: -200,
+            // translateY: -200,
+            opacity: 0,
+          },
+        ],
+        easing,
+      }).finished;
+
+      anime({
+        targets: imageBlock.current,
+        duration: duration,
+        keyframes: [{ minHeight: "0vh", maxHeight: "0vh" }],
+        easing,
+      });
+
+      anime({
+        targets: messageActionBlock.current,
+        duration: duration,
+        keyframes: [{ translateY: -200 }],
+        easing,
+      });
+      anime({
+        targets: messageBlock.current,
+        duration: duration,
+        keyframes: [{ height: "96%" }],
+        easing,
+      });
+
+      // anime({
+      //   targets: messageBlock.current,
+      //   duration: duration,
+      //   keyframes: [{ height: "100%", width: "100%" }],
+      //   easing,
+      // });
+      setCurrentScreenType("question");
+      return;
+    }
+
+    if (currentScreenType === "question") { 
+      await reverseTheQuestion()
+    }
+
+    // *************************************************
+    const stopAnimate =
+      block[_selectedIndex].panel_id === block[_selectedIndex + 1]?.panel_id;
     messageText.current.innerHTML = `<span class=${styles["dot-typing"]}></span>`;
+    if (!stopAnimate) {
+      await anime({
+        targets: imageFrame.current,
+        duration: duration * 2,
+        keyframes: [
+          {
+            rotate: "-45deg",
+            translateX: -200,
+            translateY: 0,
+            opacity: 0,
+          },
+        ],
+        easing,
+      }).finished;
+      // await anime({
+      //   targets: imageFrame.current,
+      //   duration: duration,
+      //   keyframes: [
+      //     {
+      //       // translateX: -200,
+      //       opacity: 0,
+      //     },
+      //   ],
+      //   easing,
+      // }).finished;
+    }
+    if (!stopAnimate) {
+      anime({
+        targets: backgroundImage.current,
+        keyframes: [{ opacity: 0.2 }],
+        easing,
+      }).finished;
+    }
+
     // await anime({
     //   targets: messageBlock.current,
     //   duration: duration,
@@ -213,19 +323,6 @@ export default function Home() {
     //   keyframes: [{ height: "50%", width: "90%",  borderRadius: '100px 100px 0px 0px'}],
     //   easing,
     // }).finished;
-    if (!stopAnimate) {
-      await anime({
-        targets: imageFrame.current,
-        duration: duration,
-        keyframes: [
-          {
-            // translateX: -200,
-            opacity: 0,
-          },
-        ],
-        easing,
-      }).finished;
-    }
 
     if (selectedIndex < block.length - 1) {
       _selectedIndex = selectedIndex + 1;
@@ -273,32 +370,34 @@ export default function Home() {
     //   pnl: storyInfo.pnl + 1,
     //   no_pnl: storyInfo.no_pnl,
     // });
-    // await anime({
-    //   targets: imageFrame.current,
-    //   duration: duration,
-    //   keyframes: [
-    //     {
-    //       translateX: 200,
-    //       opacity: 0,
-    //     },
-    //   ],
-    //   easing,
-    // }).finished;
 
     if (!stopAnimate) {
-      anime({
-        targets: backgroundImage.current,
+      await anime({
+        targets: imageFrame.current,
         duration: duration,
-        delay: delay,
-        keyframes: [{ opacity: 1 }],
+        keyframes: [
+          {
+            rotate: "45deg",
+            translateX: 200,
+            opacity: 0,
+          },
+        ],
         easing,
-      });
+      }).finished;
+      // anime({
+      //   targets: backgroundImage.current,
+      //   duration: duration,
+      //   delay: delay,
+      //   keyframes: [{ opacity: 1 }],
+      //   easing,
+      // });
       anime({
         targets: imageFrame.current,
         duration: duration,
         delay: delay,
         keyframes: [
           {
+            rotate: "0deg",
             translateX: 0,
             opacity: 1,
           },
@@ -315,22 +414,236 @@ export default function Home() {
     // }).finished;
 
     setTimeout(() => {
-      messageText.current.innerHTML = block[_selectedIndex].message_text;
+      messageText.current.innerHTML =
+        block[_selectedIndex]?.message_text || block[_selectedIndex]?.question;
     }, delay * 10);
   };
 
-  const onPrev = () => {
+  const onPrev = async () => {
+    if (currentScreenType === "question") {
+      await reverseTheQuestion()
+      return;
+    }
     let _selectedIndex = selectedIndex - 1;
     if (_selectedIndex < 0) {
       setSelectedIndex(0);
-      messageText.current.innerHTML = block[0].message_text;
     } else {
-      messageText.current.innerHTML = block[_selectedIndex].message_text;
       setSelectedIndex(_selectedIndex);
     }
   };
 
-  console.log(preloadImages, "preloadImages");
+  const reverseTheQuestion =  async () =>{
+    await anime({
+      targets: imageFrame.current,
+      duration: duration,
+      delay: delay,
+      keyframes: [
+        {
+          // ************** animation type **********
+          rotate: "0deg",
+          translateX: 0,
+          // translateY: 0,
+          opacity: 1,
+        },
+      ],
+      easing,
+    });
+
+    anime({
+      targets: imageBlock.current,
+      duration: duration,
+      keyframes: [{ minHeight: "50vh", maxHeight: "50vh" }],
+      easing,
+    });
+    anime({
+      targets: messageActionBlock.current,
+      duration: duration,
+      keyframes: [{ translateY: 0 }],
+      easing,
+    });
+
+    anime({
+      targets: messageBlock.current,
+      duration: duration,
+      keyframes: [{ height: "100%" }],
+      easing,
+    });
+
+    // anime({
+    //   targets: messageBlock.current,
+    //   duration: duration,
+    //   keyframes: [{ height: "auto", width: "100%" }],
+    //   easing,
+    // });
+    setCurrentScreenType("story");
+    return;
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      messageText.current.innerHTML =
+        block[selectedIndex]?.message_text || block[selectedIndex]?.question;
+    }, delay * 10);
+  }, [selectedIndex]);
+
+  console.log(preloadImages, block[selectedIndex].panel_type, "preloadImages");
+
+  let panelBlock;
+
+  if (block[selectedIndex].panel_type === "story") {
+    panelBlock = (
+      <div className={styles.info_container}>
+        <div className={styles.image_container} ref={imageBlock}>
+          <div className={styles.action_items}>
+            {selectedIndex > 0 && currentScreenType === "story" && (
+              <Image
+                ref={backButton}
+                priority
+                src="/images/back.svg"
+                alt="Back"
+                onClick={onPrev}
+                width={40}
+                height={40}
+              />
+            )}
+            {selectedIndex > 0 && currentScreenType === "question" && (
+              <Image
+                ref={backButton}
+                className={styles.close_img}
+                priority
+                src="/images/close.svg"
+                alt="Back"
+                onClick={onPrev}
+                width={40}
+                height={40}
+              />
+            )}
+          </div>
+
+          {preloadImages[block[selectedIndex].panel_id] ? (
+            <div
+              className={styles.image_frame}
+              ref={imageFrame}
+              dangerouslySetInnerHTML={{
+                __html: preloadImages[block[selectedIndex].panel_id],
+              }}
+            />
+          ) : (
+            <div className={styles.image_frame} ref={imageFrame}>
+              <Image
+                fill
+                src={block[selectedIndex].image}
+                style={{ objectFit: "contain" }}
+                alt="billboard"
+                priority={true}
+              />
+            </div>
+          )}
+        </div>
+        <div className={styles.message__container}>
+          <Image
+            className={
+              currentScreenType === "question"
+                ? styles.fox_img_show
+                : styles.fox_img_hide
+            }
+            priority
+            src="/images/fox.svg"
+            alt="Fox"
+            width={100}
+            height={100}
+          />
+          <div
+            ref={messageActionBlock}
+            className={styles["message__action-items"]}
+          >
+            <Image
+              priority
+              src="/images/audio.svg"
+              alt="Back"
+              width={40}
+              height={40}
+            />
+            <Image
+              priority
+              src="/images/refresh.svg"
+              alt="Back"
+              width={40}
+              height={40}
+            />
+          </div>
+          <div className={styles.message_parent}>
+            {/* <div
+                  className={
+                    block[selectedIndex]?.user?.avatar === "girl"
+                      ? styles.message_avatar_girl
+                      : styles.message_avatar_boy
+                  }
+                >
+                  <Image
+                    priority
+                    src={`/images/${block[selectedIndex].user.avatar}.webp`}
+                    alt="girl"
+                    width={70}
+                    height={70}
+                  />
+                </div> */}
+            <div ref={messageBlock}  className={styles.message_block}>
+              <div className={styles.text_block}>
+                <p
+                  ref={messageText}
+                  data-text={block[selectedIndex].message_text}
+                >
+                  <span className={styles["dot-typing"]}></span>
+                </p>
+              </div>
+              <div ref={continueButton} className={styles.button_block}>
+                <button onClick={onNext}>Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    panelBlock = (
+      <div className={styles.info_container}>
+        <div className={styles.message__container}>
+          <div className={styles.message_parent}>
+            <div className={styles.message_header}>
+              <Image
+                className={styles.fox_img}
+                priority
+                src="/images/fox.svg"
+                alt="Fox"
+                width={100}
+                height={100}
+              />
+              <Image
+                className={styles.close_img}
+                priority
+                src="/images/close.svg"
+                onClick={onPrev}
+                alt="Back"
+                width={40}
+                height={40}
+              />
+            </div>
+            <div ref={messageBlock} className={styles.message_block}>
+              <div className={styles.text_block}>
+                <p ref={messageText} data-text={block[selectedIndex].question}>
+                  <span className={styles["dot-typing"]}></span>
+                </p>
+              </div>
+              <div ref={continueButton} className={styles.button_block}>
+                <button onClick={onNext}>Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -355,90 +668,7 @@ export default function Home() {
             />
           )}
 
-          <div className={styles.info_container}>
-            <div className={styles.image_container}>
-              <div className={styles.action_items}>
-                {selectedIndex > 0 && (
-                  <Image
-                    priority
-                    src="/images/back.svg"
-                    alt="Back"
-                    onClick={onPrev}
-                    width={40}
-                    height={40}
-                  />
-                )}
-              </div>
-
-              {preloadImages[block[selectedIndex].panel_id] ? (
-                <div
-                  className={styles.image_frame}
-                  ref={imageFrame}
-                  dangerouslySetInnerHTML={{
-                    __html: preloadImages[block[selectedIndex].panel_id],
-                  }}
-                />
-              ) : (
-                <div className={styles.image_frame} ref={imageFrame}>
-                  <Image
-                    fill
-                    src={block[selectedIndex].image}
-                    style={{ objectFit: "contain" }}
-                    alt="billboard"
-                    priority={true}
-                  />
-                </div>
-              )}
-            </div>
-            <div className={styles.message__container}>
-              <div className={styles["message__action-items"]}>
-                <Image
-                  priority
-                  src="/images/audio.svg"
-                  alt="Back"
-                  width={40}
-                  height={40}
-                />
-                <Image
-                  priority
-                  src="/images/refresh.svg"
-                  alt="Back"
-                  width={40}
-                  height={40}
-                />
-              </div>
-              <div className={styles.message_parent}>
-                <div
-                  className={
-                    block[selectedIndex].user.avatar === "girl"
-                      ? styles.message_avatar_girl
-                      : styles.message_avatar_boy
-                  }
-                >
-                  <Image
-                    priority
-                    src={`/images/${block[selectedIndex].user.avatar}.webp`}
-                    alt="girl"
-                    width={70}
-                    height={70}
-                  />
-                </div>
-                <div ref={messageBlock} className={styles.message_block}>
-                  <div className={styles.text_block}>
-                    <p
-                      ref={messageText}
-                      data-text={block[selectedIndex].message_text}
-                    >
-                      <span className={styles["dot-typing"]}></span>
-                    </p>
-                  </div>
-                  <div ref={continueButton} className={styles.button_block}>
-                    <button onClick={onNext}>Continue</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {panelBlock}
         </div>
       </div>
     </>

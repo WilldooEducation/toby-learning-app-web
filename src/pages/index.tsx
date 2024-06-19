@@ -111,7 +111,7 @@ export default function Home() {
           <Button
             className={styles.btn}
             onClick={() => {
-              router.push('/new')
+              router.push('/block')
             }}
           >
             Continue

@@ -53,6 +53,12 @@
     display: flex;
     margin: 20px 25px 0 25px;
     height: 40px;
+    position: relative;
+    .close_img {
+      position: absolute;
+      right: 0px;
+      transition: all 1s ease-in;
+    }
   }
   .image_container {
     flex: 1;
@@ -62,7 +68,7 @@
     max-height: 50vh;
     min-height: 50vh;
     .image_frame {
-      opacity: 0;
+      opacity: 1;
       position: relative;
       flex: 1;
       border-radius: 25px;
@@ -81,6 +87,14 @@
     padding: 15px 15px 0 15px;
     display: flex;
     flex-direction: column;
+    .fox_img_hide {
+      position: absolute;
+      opacity: 0;
+    }
+    .fox_img_show {
+      position: absolute;
+      opacity: 1;
+    }
     .message__action-items {
       display: flex;
       padding: 0 25px 15px 25px;
@@ -95,17 +109,38 @@
       justify-content: flex-end;
       align-items: center;
       position: relative;
+      transition: all 1s ease-in;
+      .message_header {
+        display: flex;
+        width: 100%;
+        position: relative;
+        height: 100px;    
+        .fox_img {
+          position: absolute !important;
+          left: 15px;
+        }
+        .close_img {
+          position: absolute !important;
+          right: 15px;
+        }
+      }
       .message_avatar_girl {
         position: absolute;
         top: -50px;
         left: 15px;
-        z-index: -1;
+        width: 80px;
+        height: 96px;
+        flex-shrink: 0;
+        background: url('/images/girl.webp') lightgray -9.163px 0px / 122.175% 101.499% no-repeat;
       }
       .message_avatar_boy {
         position: absolute;
         top: -50px;
         right: 15px;
-        z-index: -1;
+        width: 80px;
+        height: 96px;
+        flex-shrink: 0;
+        background: url('/images/boy.webp') lightgray -9.163px 0px / 122.175% 101.499% no-repeat;
       }
       .message_block {
         background-color: #f01;
