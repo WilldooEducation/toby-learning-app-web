@@ -274,8 +274,8 @@ export default function Home() {
       return;
     }
 
-    if (currentScreenType === "question") { 
-      await reverseTheQuestion()
+    if (currentScreenType === "question") {
+      await reverseTheQuestion();
     }
 
     // *************************************************
@@ -419,7 +419,7 @@ export default function Home() {
 
   const onPrev = async () => {
     if (currentScreenType === "question") {
-      await reverseTheQuestion()
+      await reverseTheQuestion();
       return;
     }
     let _selectedIndex = selectedIndex - 1;
@@ -430,7 +430,7 @@ export default function Home() {
     }
   };
 
-  const reverseTheQuestion =  async () =>{
+  const reverseTheQuestion = async () => {
     await anime({
       targets: imageFrame.current,
       duration: duration,
@@ -475,7 +475,7 @@ export default function Home() {
     // });
     setCurrentScreenType("story");
     return;
-  }
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -486,92 +486,87 @@ export default function Home() {
 
   console.log(preloadImages, block[selectedIndex].panel_type, "preloadImages");
 
-  let panelBlock;
-
-  if (block[selectedIndex].panel_type === "story") {
-    panelBlock = (
-      <div className={styles.info_container}>
-        <div className={styles.image_container} ref={imageBlock}>
-          <div className={styles.action_items}>
-            {selectedIndex > 0 && currentScreenType === "story" && (
-              <Image
-                ref={backButton}
-                priority
-                src="/images/back.svg"
-                alt="Back"
-                onClick={onPrev}
-                width={40}
-                height={40}
-              />
-            )}
-            {selectedIndex > 0 && currentScreenType === "question" && (
-              <Image
-                ref={backButton}
-                className={styles.close_img}
-                priority
-                src="/images/close.svg"
-                alt="Back"
-                onClick={onPrev}
-                width={40}
-                height={40}
-              />
-            )}
-          </div>
-
-          {preloadImages[block[selectedIndex].panel_id] ? (
-            <div
-              className={styles.image_frame}
-              ref={imageFrame}
-              dangerouslySetInnerHTML={{
-                __html: preloadImages[block[selectedIndex].panel_id],
-              }}
+  const panelBlock = (
+    <div className={styles.info_container}>
+      <div className={styles.image_container} ref={imageBlock}>
+        <div className={styles.action_items}>
+          {selectedIndex > 0 && currentScreenType === "story" && (
+            <Image
+              ref={backButton}
+              priority
+              src="/images/back.svg"
+              alt="Back"
+              onClick={onPrev}
+              width={40}
+              height={40}
             />
-          ) : (
-            <div className={styles.image_frame} ref={imageFrame}>
-              <Image
-                fill
-                src={block[selectedIndex].image}
-                style={{ objectFit: "contain" }}
-                alt="billboard"
-                priority={true}
-              />
-            </div>
+          )}
+          {selectedIndex > 0 && currentScreenType === "question" && (
+            <Image
+              ref={backButton}
+              className={styles.close_img}
+              src="/images/close.svg"
+              alt="Back"
+              onClick={onPrev}
+              width={40}
+              height={40}
+            />
           )}
         </div>
-        <div className={styles.message__container}>
-          <Image
-            className={
-              currentScreenType === "question"
-                ? styles.fox_img_show
-                : styles.fox_img_hide
-            }
-            priority
-            src="/images/fox.svg"
-            alt="Fox"
-            width={100}
-            height={100}
-          />
+
+        {preloadImages[block[selectedIndex].panel_id] ? (
           <div
-            ref={messageActionBlock}
-            className={styles["message__action-items"]}
-          >
+            className={styles.image_frame}
+            ref={imageFrame}
+            dangerouslySetInnerHTML={{
+              __html: preloadImages[block[selectedIndex].panel_id],
+            }}
+          />
+        ) : (
+          <div className={styles.image_frame} ref={imageFrame}>
             <Image
-              priority
-              src="/images/audio.svg"
-              alt="Back"
-              width={40}
-              height={40}
-            />
-            <Image
-              priority
-              src="/images/refresh.svg"
-              alt="Back"
-              width={40}
-              height={40}
+              fill
+              src={block[selectedIndex].image}
+              style={{ objectFit: "contain" }}
+              alt="billboard"
+              priority={true}
             />
           </div>
-          <div className={styles.message_parent}>
-            {/* <div
+        )}
+      </div>
+      <div className={styles.message__container}>
+        <Image
+          className={
+            currentScreenType === "question"
+              ? styles.fox_img_show
+              : styles.fox_img_hide
+          }
+          src="/images/fox.svg"
+          alt="Fox"
+          width={100}
+          height={100}
+        />
+        <div
+          ref={messageActionBlock}
+          className={styles["message__action-items"]}
+        >
+          <Image
+            priority
+            src="/images/audio.svg"
+            alt="Back"
+            width={40}
+            height={40}
+          />
+          <Image
+            priority
+            src="/images/refresh.svg"
+            alt="Back"
+            width={40}
+            height={40}
+          />
+        </div>
+        <div className={styles.message_parent}>
+          {/* <div
                   className={
                     block[selectedIndex]?.user?.avatar === "girl"
                       ? styles.message_avatar_girl
@@ -586,62 +581,23 @@ export default function Home() {
                     height={70}
                   />
                 </div> */}
-            <div ref={messageBlock}  className={styles.message_block}>
-              <div className={styles.text_block}>
-                <p
-                  ref={messageText}
-                  data-text={block[selectedIndex].message_text}
-                >
-                  <span className={styles["dot-typing"]}></span>
-                </p>
-              </div>
-              <div ref={continueButton} className={styles.button_block}>
-                <button onClick={onNext}>Continue</button>
-              </div>
+          <div ref={messageBlock} className={styles.message_block}>
+            <div className={styles.text_block}>
+              <p
+                ref={messageText}
+                data-text={block[selectedIndex].message_text}
+              >
+                <span className={styles["dot-typing"]}></span>
+              </p>
+            </div>
+            <div ref={continueButton} className={styles.button_block}>
+              <button onClick={onNext}>Continue</button>
             </div>
           </div>
         </div>
       </div>
-    );
-  } else {
-    panelBlock = (
-      <div className={styles.info_container}>
-        <div className={styles.message__container}>
-          <div className={styles.message_parent}>
-            <div className={styles.message_header}>
-              <Image
-                className={styles.fox_img}
-                priority
-                src="/images/fox.webp"
-                alt="Fox"
-                width={100}
-                height={100}
-              />
-              <Image
-                className={styles.close_img}
-                priority
-                src="/images/close.svg"
-                onClick={onPrev}
-                alt="Back"
-                width={40}
-                height={40}
-              />
-            </div>
-            <div ref={messageBlock} className={styles.message_block}>
-              <div className={styles.text_block}>
-                <p ref={messageText} data-text={block[selectedIndex].question}>
-                  <span className={styles["dot-typing"]}></span>
-                </p>
-              </div>
-              <div ref={continueButton} className={styles.button_block}>
-                <button onClick={onNext}>Continue</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    </div>
+  );
 
   return (
     <>
