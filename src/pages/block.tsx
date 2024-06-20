@@ -285,7 +285,7 @@ export default function Home() {
     if (!stopAnimate) {
       await anime({
         targets: imageFrame.current,
-        duration: duration * 2,
+        duration: duration,
         keyframes: [
           {
             rotate: "-45deg",
@@ -313,7 +313,7 @@ export default function Home() {
         targets: backgroundImage.current,
         keyframes: [{ opacity: 0.2 }],
         easing,
-      }).finished;
+      });
     }
 
     // await anime({
@@ -384,17 +384,15 @@ export default function Home() {
         ],
         easing,
       }).finished;
-      // anime({
-      //   targets: backgroundImage.current,
-      //   duration: duration,
-      //   delay: delay,
-      //   keyframes: [{ opacity: 1 }],
-      //   easing,
-      // });
+      anime({
+        targets: backgroundImage.current,
+        duration: duration,
+        keyframes: [{ opacity: 1 }],
+        easing,
+      });
       anime({
         targets: imageFrame.current,
         duration: duration,
-        delay: delay,
         keyframes: [
           {
             rotate: "0deg",
@@ -614,7 +612,7 @@ export default function Home() {
               <Image
                 className={styles.fox_img}
                 priority
-                src="/images/fox.svg"
+                src="/images/fox.webp"
                 alt="Fox"
                 width={100}
                 height={100}

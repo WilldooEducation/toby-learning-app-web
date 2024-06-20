@@ -24,6 +24,7 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
+    transition: all .35s ease-in;
   }
   img {
     object-fit: cover !important;
@@ -57,7 +58,7 @@
     .close_img {
       position: absolute;
       right: 0px;
-      transition: all 1s ease-in;
+      transition: all .35s ease-in;
     }
   }
   .image_container {
@@ -109,7 +110,7 @@
       justify-content: flex-end;
       align-items: center;
       position: relative;
-      transition: all 1s ease-in;
+      transition: all .35s ease-in;
       .message_header {
         display: flex;
         width: 100%;
