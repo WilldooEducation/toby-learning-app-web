@@ -3,10 +3,10 @@ import { Button } from "@material-tailwind/react";
 import styles from "./block.module.scss";
 import { useRouter } from "next/router";
 import Chapter from "@/components/chapter";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import anime from "animejs";
 import { ImagePreload } from "@/utils/imagePreload";
-
+let timeout: any;
 export default function Home() {
   const router = useRouter();
 
@@ -35,6 +35,7 @@ export default function Home() {
   // https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk2/poster_bg_std07_science_ch1_bl02_pnl_001/poster_bg_std07_science_ch1_bl02_pnl_001_1_5x.webp
   const easing = "easeInSine";
   const { query } = router;
+  const timer = (ms: any) => new Promise(res => setTimeout(res, ms));
 
   const imageFrame = useRef<any>(null);
   const messageText = useRef<any>(null);
@@ -46,6 +47,7 @@ export default function Home() {
   const messageActionBlock = useRef<any>(null);
   const [preloadImages, setPreloadImages] = useState<any>({});
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isType, setIsType] = useState(true);
   const [messageIndex, setMessageIndex] = useState(0);
   const [currentScreenType, setCurrentScreenType] = useState("story");
   // function preloadImage (src: string) {
@@ -165,6 +167,27 @@ export default function Home() {
   console.log(query.block, "QUERY");
   const duration = 500;
   const delay = 100;
+  const appendTextInTypeEffect = useCallback(() => {
+    setIsType(true);
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(async () => {
+      messageText.current.innerHTML = "";
+      const messageSplit = messageText.current.dataset.text
+        .split("")
+        .map((e: any) => {
+          const ele = document.createElement("span");
+          ele.classList.add("text-block");
+          ele.innerHTML = `${e}`;
+          return ele;
+        });
+      for (const text of messageSplit) {
+        await timer(50);
+        messageText.current.append(text);
+      }
+      messageText.current.innerHTML = messageText.current.dataset.text;
+      setIsType(false);
+    }, delay);
+  }, []);
   useEffect(() => {
     // search query string changed
     // setStoryInfo({
@@ -199,22 +222,10 @@ export default function Home() {
     //   ],
     //   easing,
     // });
-    setTimeout(() => {
-      messageText.current.innerHTML = messageText.current.dataset.text;
-    }, delay * 10);
   }, []);
 
-  const [storyInfo, setStoryInfo] = useState<any>({
-    bl: query.block || 1,
-    pnl: query.panel || 1,
-    no_pnl: query.no_pnl || 2,
-  });
-  console.log(
-    storyInfo.bl.toString().padStart(2, "0"),
-    storyInfo.pnl.toString().padStart(3, "0")
-  );
-
   const onNext = async () => {
+    if (isType) return;
     let _messageIndex = messageIndex;
     let _selectedIndex = selectedIndex;
     let _preloadImages = preloadImages;
@@ -235,7 +246,7 @@ export default function Home() {
         keyframes: [
           {
             // ************** animation type **********
-            rotate: "-45deg",
+            rotate: "-10deg",
             translateX: -200,
             // translateY: -200,
             opacity: 0,
@@ -281,14 +292,14 @@ export default function Home() {
     // *************************************************
     const stopAnimate =
       block[_selectedIndex].panel_id === block[_selectedIndex + 1]?.panel_id;
-    messageText.current.innerHTML = `<span class=${styles["dot-typing"]}></span>`;
+    messageText.current.innerHTML = ``;
     if (!stopAnimate) {
       await anime({
         targets: imageFrame.current,
         duration: duration,
         keyframes: [
           {
-            rotate: "-45deg",
+            rotate: "-10deg",
             translateX: -200,
             translateY: 0,
             opacity: 0,
@@ -377,7 +388,7 @@ export default function Home() {
         duration: duration,
         keyframes: [
           {
-            rotate: "45deg",
+            rotate: "10deg",
             translateX: 200,
             opacity: 0,
           },
@@ -411,13 +422,14 @@ export default function Home() {
     //   easing,
     // }).finished;
 
-    setTimeout(() => {
-      messageText.current.innerHTML =
-        block[_selectedIndex]?.message_text || block[_selectedIndex]?.question;
-    }, delay * 10);
+    // setTimeout(() => {
+    //   messageText.current.innerHTML =
+    //     block[_selectedIndex]?.message_text || block[_selectedIndex]?.question;
+    // }, delay * 10);
   };
 
   const onPrev = async () => {
+    if (isType) return;
     if (currentScreenType === "question") {
       await reverseTheQuestion();
       return;
@@ -428,6 +440,7 @@ export default function Home() {
     } else {
       setSelectedIndex(_selectedIndex);
     }
+    messageText.current.innerHTML = ``;
   };
 
   const reverseTheQuestion = async () => {
@@ -478,11 +491,9 @@ export default function Home() {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      messageText.current.innerHTML =
-        block[selectedIndex]?.message_text || block[selectedIndex]?.question;
-    }, delay * 10);
-  }, [selectedIndex]);
+    console.log("call", selectedIndex);
+    appendTextInTypeEffect();
+  }, [selectedIndex, appendTextInTypeEffect]);
 
   console.log(preloadImages, block[selectedIndex].panel_type, "preloadImages");
 
@@ -566,28 +577,34 @@ export default function Home() {
           />
         </div>
         <div className={styles.message_parent}>
-          {/* <div
-                  className={
-                    block[selectedIndex]?.user?.avatar === "girl"
-                      ? styles.message_avatar_girl
-                      : styles.message_avatar_boy
-                  }
-                >
-                  <Image
-                    priority
-                    src={`/images/${block[selectedIndex].user.avatar}.webp`}
-                    alt="girl"
-                    width={70}
-                    height={70}
-                  />
-                </div> */}
+          {currentScreenType !== "question" && (
+            <div
+              className={
+                block[selectedIndex]?.user?.avatar === "girl"
+                  ? styles.message_avatar_girl
+                  : styles.message_avatar_boy
+              }
+            >
+              <Image
+                priority
+                src={`/images/${block[selectedIndex].user.avatar}_image.png`}
+                alt="girl"
+                width={70}
+                height={70}
+              />
+              {isType && <div className={block[selectedIndex]?.user?.avatar === "girl"
+                  ? styles["type-anim_girl"]
+                  : styles["type-anim_boy"]}>
+                <span className={styles["dot-typing"]}></span>
+              </div>}
+            </div>
+          )}
           <div ref={messageBlock} className={styles.message_block}>
             <div className={styles.text_block}>
               <p
                 ref={messageText}
                 data-text={block[selectedIndex].message_text}
               >
-                <span className={styles["dot-typing"]}></span>
               </p>
             </div>
             <div ref={continueButton} className={styles.button_block}>

@@ -91,10 +91,12 @@
     .fox_img_hide {
       position: absolute;
       opacity: 0;
+      z-index: 1;
     }
     .fox_img_show {
       position: absolute;
       opacity: 1;
+      z-index: 1;
     }
     .message__action-items {
       display: flex;
@@ -127,21 +129,43 @@
       }
       .message_avatar_girl {
         position: absolute;
-        top: -50px;
+        top: -39px;
         left: 15px;
-        width: 80px;
-        height: 96px;
-        flex-shrink: 0;
-        background: url('/images/girl.webp') lightgray -9.163px 0px / 122.175% 101.499% no-repeat;
+        width: 75px;
+        height: 70px;
+        background: #92878773;
+        backdrop-filter: blur(7.5px);
+        border-radius: 100%;
+        border: 2px solid #fff;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        animation: fadeIn 0.35s forwards;
       }
       .message_avatar_boy {
         position: absolute;
-        top: -50px;
+        top: -39px;
         right: 15px;
-        width: 80px;
-        height: 96px;
-        flex-shrink: 0;
-        background: url('/images/boy.webp') lightgray -9.163px 0px / 122.175% 101.499% no-repeat;
+        width: 75px;
+        height: 70px;
+        background: #92878773;
+        backdrop-filter: blur(7.5px);
+        border-radius: 100%;
+        border: 2px solid #fff;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        animation: fadeIn 0.35s forwards;
+      }
+      .type-anim_girl {
+        position: absolute;
+        bottom: 0;
+        right: -27px;
+      }
+      .type-anim_boy {
+        position: absolute;
+        bottom: 0;
+        left: -27px;
       }
       .message_block {
         background-color: #f01;
@@ -165,6 +189,12 @@
             line-height: 170%; /* 37.4px */
             letter-spacing: 0.66px;
             padding: 0 27px;
+            transition: all 0.35s ease-in-out;
+            span {
+              opacity: 0;
+              transition: all 0.35s ease-in-out;
+              animation: fadeIn 0.35s forwards;
+            }
           }
         }
         .button_block {
@@ -201,6 +231,11 @@ $dotColor: #fff;
   box-shadow: 9984px 0 0 0 $dotColor, 9999px 0 0 0 $dotColor,
     10014px 0 0 0 $dotColor;
   animation: dot-typing 1.5s infinite linear;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes dot-typing {
