@@ -215,13 +215,12 @@
               opacity: 1;
               transform: scale(.5);
               position: relative;
-              
               &::before {
                 top: 0px;
                 left: -6px;
                 content: "";
                 animation: widthIn .35s forwards;
-                background-color: #3549fb;
+                background-color: #ff086b;
                 width: 120%;
                 height: 110%;
                 border-radius: 4px;
