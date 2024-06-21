@@ -541,7 +541,7 @@ export default function Home() {
     return;
   };
 
-  let selectedWordIndex = -1
+  let selectedWordIndex = -1;
 
   const onTimeChange = (e: any) => {
     const textSplit = block[selectedIndex].message_text.split(" ");
@@ -551,8 +551,8 @@ export default function Home() {
         audioRef?.current?.currentTime >= e.start &&
         audioRef?.current?.currentTime <= e.end
     );
-    if(selectedWordIndex === selectedWord) return 
-    selectedWordIndex = selectedWord
+    if (selectedWordIndex === selectedWord) return;
+    selectedWordIndex = selectedWord;
     if (selectedWord != -1)
       console.log(
         block[selectedIndex].audio_transcript[selectedWord].Word,
@@ -696,32 +696,40 @@ export default function Home() {
         </div>
         <div className={styles.message_parent}>
           {currentScreenType !== "question" && (
-            <div
-              className={
-                block[selectedIndex]?.user?.avatar === "girl"
-                  ? styles.message_avatar_girl
-                  : styles.message_avatar_boy
-              }
-            >
-              <Image
-                priority
-                src={`/images/${block[selectedIndex].user.avatar}_image.png`}
-                alt="girl"
-                width={70}
-                height={70}
-              />
-              {isType && (
-                <div
-                  className={
-                    block[selectedIndex]?.user?.avatar === "girl"
-                      ? styles["type-anim_girl"]
-                      : styles["type-anim_boy"]
-                  }
-                >
-                  <span className={styles["dot-typing"]}></span>
-                </div>
-              )}
-            </div>
+            <>
+              <div
+                className={[
+                  styles.message_avatar_girl,
+                  block[selectedIndex]?.user?.avatar === "girl"
+                    ? styles.show
+                    : styles.hide,
+                ].join(' ')}
+              >
+                <Image
+                  priority
+                  src={`/images/girl_image.png`}
+                  alt="girl"
+                  width={70}
+                  height={70}
+                />
+              </div>
+              <div
+                className={[
+                  styles.message_avatar_boy,
+                  block[selectedIndex]?.user?.avatar === "boy"
+                    ? styles.show
+                    : styles.hide,
+                ].join(' ')}
+              >
+                <Image
+                  priority
+                  src={`/images/boy_image.png`}
+                  alt="boy"
+                  width={70}
+                  height={70}
+                />
+              </div>
+            </>
           )}
           <div ref={messageBlock} className={styles.message_block}>
             <div className={styles.text_block}>

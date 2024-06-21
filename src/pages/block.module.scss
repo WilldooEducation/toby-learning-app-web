@@ -163,6 +163,12 @@
         align-items: flex-end;
         justify-content: center;
         animation: fadeIn 0.35s forwards;
+        &.hide {
+          opacity: 0 !important;
+        }
+        &.show {
+          opacity: 1;
+        }
       }
       .message_avatar_boy {
         position: absolute;
@@ -178,6 +184,12 @@
         align-items: flex-end;
         justify-content: center;
         animation: fadeIn 0.35s forwards;
+        &.hide {
+          opacity: 0 !important;
+        }
+        &.show {
+          opacity: 1;
+        }
       }
       .type-anim_girl {
         position: absolute;
