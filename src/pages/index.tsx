@@ -118,7 +118,7 @@ export default function Home() {
           </Button>
         </div>
       </div>
-      {items.map((e: any, i: any) => (
+      {/* {items.map((e: any, i: any) => (
         <div
           key={i}
           className={styles.story_container}
@@ -142,7 +142,7 @@ export default function Home() {
             }}
           ></Chapter>
         </div>
-      ))}
+      ))} */}
     </>
   );
 }

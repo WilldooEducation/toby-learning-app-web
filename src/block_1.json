@@ -1,0 +1,82 @@
+[
+    {
+        "Word": "hey",
+        "Offset": 700000,
+        "Duration": 5600000
+    },
+    {
+        "Word": "do",
+        "Offset": 7100000,
+        "Duration": 1600000
+    },
+    {
+        "Word": "you",
+        "Offset": 8700000,
+        "Duration": 1600000
+    },
+    {
+        "Word": "remember",
+        "Offset": 10300000,
+        "Duration": 5200000
+    },
+    {
+        "Word": "learning",
+        "Offset": 15500000,
+        "Duration": 4000000
+    },
+    {
+        "Word": "in",
+        "Offset": 19500000,
+        "Duration": 1600000
+    },
+    {
+        "Word": "class",
+        "Offset": 21100000,
+        "Duration": 4400000
+    },
+    {
+        "Word": "six",
+        "Offset": 25500000,
+        "Duration": 3600000
+    },
+    {
+        "Word": "that",
+        "Offset": 29100000,
+        "Duration": 2000000
+    },
+    {
+        "Word": "food",
+        "Offset": 31100000,
+        "Duration": 3600000
+    },
+    {
+        "Word": "is",
+        "Offset": 34700000,
+        "Duration": 2800000
+    },
+    {
+        "Word": "essential",
+        "Offset": 37500000,
+        "Duration": 4800000
+    },
+    {
+        "Word": "for",
+        "Offset": 42300000,
+        "Duration": 2400000
+    },
+    {
+        "Word": "all",
+        "Offset": 44700000,
+        "Duration": 2800000
+    },
+    {
+        "Word": "living",
+        "Offset": 47500000,
+        "Duration": 3200000
+    },
+    {
+        "Word": "organisms",
+        "Offset": 50700000,
+        "Duration": 10000000
+    }
+]

@@ -3,10 +3,13 @@ import { Button } from "@material-tailwind/react";
 import styles from "./block.module.scss";
 import { useRouter } from "next/router";
 import Chapter from "@/components/chapter";
+import transcriptBlockOne from "@/block_1.json";
+import transcriptBlockTwo from "@/block_2.json";
 import { useCallback, useEffect, useRef, useState } from "react";
 import anime from "animejs";
 import { ImagePreload } from "@/utils/imagePreload";
 let timeout: any;
+let stopAnimation: boolean = false;
 export default function Home() {
   const router = useRouter();
 
@@ -45,11 +48,16 @@ export default function Home() {
   const imageBlock = useRef<any>(null);
   const backButton = useRef<any>(null);
   const messageActionBlock = useRef<any>(null);
+  const audioRef = useRef<any>(null);
+  const muteBtn = useRef<any>(null);
+  const replayBtn = useRef<any>(null);
+  const [mute, setMute] = useState(false);
   const [preloadImages, setPreloadImages] = useState<any>({});
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isType, setIsType] = useState(true);
+  const [isType, setIsType] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
   const [currentScreenType, setCurrentScreenType] = useState("story");
+  const [visitedIndex, setVisitedIndex] = useState<any>(0);
   // function preloadImage (src: string) {
   //   return new Promise((resolve, reject) => {
   //     const img:any = new Image(src: src)
@@ -62,6 +70,17 @@ export default function Home() {
   //     img.src = src
   //   })
   // }
+
+  const transformAudioTanscript = (e: any) => {
+    const start = e.Offset / 10000000;
+    const progress = e.Duration / 10000000;
+    return {
+      ...e,
+      start: start,
+      duraion_sec: progress,
+      end: start + progress,
+    };
+  };
   const block = [
     {
       panel_type: "story",
@@ -74,6 +93,7 @@ export default function Home() {
       message_text:
         "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
       audio: "",
+      audio_transcript: transcriptBlockOne.map(transformAudioTanscript),
     },
     {
       panel_type: "story",
@@ -86,6 +106,7 @@ export default function Home() {
       message_text:
         "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
       audio: "",
+      audio_transcript: transcriptBlockTwo.map(transformAudioTanscript),
       question: {
         panel_type: "question",
         panel_id: "_1",
@@ -125,6 +146,7 @@ export default function Home() {
       message_text:
         "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
       audio: "",
+      audio_transcript: transcriptBlockOne.map(transformAudioTanscript),
     },
     {
       panel_type: "story",
@@ -137,6 +159,7 @@ export default function Home() {
       message_text:
         "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
       audio: "",
+      audio_transcript: transcriptBlockTwo.map(transformAudioTanscript),
     },
     {
       panel_type: "story",
@@ -149,6 +172,7 @@ export default function Home() {
       message_text:
         "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
       audio: "",
+      audio_transcript: transcriptBlockOne.map(transformAudioTanscript),
     },
     {
       panel_type: "story",
@@ -161,33 +185,48 @@ export default function Home() {
       message_text:
         "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
       audio: "",
+      audio_transcript: transcriptBlockOne.map(transformAudioTanscript),
     },
   ];
 
   console.log(query.block, "QUERY");
   const duration = 500;
   const delay = 100;
-  const appendTextInTypeEffect = useCallback(() => {
-    setIsType(true);
-    if (timeout) clearTimeout(timeout);
-    timeout = setTimeout(async () => {
-      messageText.current.innerHTML = "";
-      const messageSplit = messageText.current.dataset.text
-        .split("")
-        .map((e: any) => {
-          const ele = document.createElement("span");
-          ele.classList.add("text-block");
-          ele.innerHTML = `${e}`;
-          return ele;
-        });
-      for (const text of messageSplit) {
-        await timer(50);
-        messageText.current.append(text);
-      }
-      messageText.current.innerHTML = messageText.current.dataset.text;
-      setIsType(false);
-    }, delay);
-  }, []);
+  // const appendTextInTypeEffect = useCallback(async (
+  //   _visitedIndex: any = 0,
+  //   _selectedIndex: any = 0
+  // ) => {
+  //   console.log(
+  //     _visitedIndex <= _selectedIndex,
+  //     _visitedIndex,
+  //     "VISITED",
+  //     _selectedIndex,
+  //     "SELECTED"
+  //   );
+  //   if (_selectedIndex > _visitedIndex) {
+  //     setIsType(true);
+  //     // if (timeout) clearTimeout(timeout);
+  //     // timeout = setTimeout(async () => {
+  //     messageText.current.innerHTML = "";
+  //     const messageSplit = messageText.current.dataset.text
+  //       .split("")
+  //       .map((e: any) => {
+  //         const ele = document.createElement("span");
+  //         ele.classList.add("text-block");
+  //         ele.innerHTML = `${e}`;
+  //         return ele;
+  //       });
+  //     for (const text of messageSplit) {
+  //       await timer(50);
+  //       messageText.current.append(text);
+  //     }
+  //     messageText.current.innerHTML = messageText.current.dataset.text;
+  //     setIsType(false);
+  //     // }, delay);
+  //   } else {
+  //     messageText.current.innerHTML = block[_selectedIndex].message_text;
+  //   }
+  // }, []);
   useEffect(() => {
     // search query string changed
     // setStoryInfo({
@@ -240,15 +279,16 @@ export default function Home() {
     }).finished;
 
     if (block[_selectedIndex].question && currentScreenType === "story") {
+      audioRef.current.pause();
       await anime({
         targets: imageFrame.current,
         duration: duration,
         keyframes: [
           {
             // ************** animation type **********
-            rotate: "-10deg",
-            translateX: -200,
-            // translateY: -200,
+            // rotate: "-10deg",
+            // translateX: -200,
+            translateY: -200,
             opacity: 0,
           },
         ],
@@ -285,14 +325,15 @@ export default function Home() {
       return;
     }
 
+    // *************************************************
+    const stopAnimate =
+      block[_selectedIndex].panel_id === block[_selectedIndex + 1]?.panel_id ||
+      currentScreenType === "question";
+    messageText.current.innerHTML = ``;
     if (currentScreenType === "question") {
       await reverseTheQuestion();
     }
-
-    // *************************************************
-    const stopAnimate =
-      block[_selectedIndex].panel_id === block[_selectedIndex + 1]?.panel_id;
-    messageText.current.innerHTML = ``;
+    debugger;
     if (!stopAnimate) {
       await anime({
         targets: imageFrame.current,
@@ -351,6 +392,9 @@ export default function Home() {
       _selectedIndex = 0;
       setSelectedIndex(_selectedIndex);
     }
+    debugger;
+    if (_selectedIndex !== 0 && visitedIndex < _selectedIndex)
+      setVisitedIndex(_selectedIndex);
 
     // if (messageIndex < block[selectedIndex].message.length - 1) {
     //   _messageIndex = messageIndex + 1;
@@ -414,6 +458,10 @@ export default function Home() {
         easing,
       });
     }
+
+    if (currentScreenType === "question") {
+      await reverseTheQuestion();
+    }
     // await anime({
     //   targets: messageBlock.current,
     //   duration: duration,
@@ -426,10 +474,12 @@ export default function Home() {
     //   messageText.current.innerHTML =
     //     block[_selectedIndex]?.message_text || block[_selectedIndex]?.question;
     // }, delay * 10);
+    // appendTextInTypeEffect(visitedIndex, _selectedIndex);
   };
 
   const onPrev = async () => {
-    if (isType) return;
+    if (timeout) clearTimeout(timeout);
+    // if (isType) return;
     if (currentScreenType === "question") {
       await reverseTheQuestion();
       return;
@@ -440,7 +490,8 @@ export default function Home() {
     } else {
       setSelectedIndex(_selectedIndex);
     }
-    messageText.current.innerHTML = ``;
+    messageText.current.innerHTML = block[_selectedIndex].message_text;
+    audioRef.current.pause();
   };
 
   const reverseTheQuestion = async () => {
@@ -451,9 +502,9 @@ export default function Home() {
       keyframes: [
         {
           // ************** animation type **********
-          rotate: "0deg",
-          translateX: 0,
-          // translateY: 0,
+          // rotate: "0deg",
+          // translateX: 0,
+          translateY: 0,
           opacity: 1,
         },
       ],
@@ -490,10 +541,71 @@ export default function Home() {
     return;
   };
 
+  let selectedWordIndex = -1
+
+  const onTimeChange = (e: any) => {
+    const textSplit = block[selectedIndex].message_text.split(" ");
+    console.log(audioRef?.current?.currentTime, "EVENT: onTimeChange");
+    const selectedWord = block[selectedIndex].audio_transcript.findIndex(
+      e =>
+        audioRef?.current?.currentTime >= e.start &&
+        audioRef?.current?.currentTime <= e.end
+    );
+    if(selectedWordIndex === selectedWord) return 
+    selectedWordIndex = selectedWord
+    if (selectedWord != -1)
+      console.log(
+        block[selectedIndex].audio_transcript[selectedWord].Word,
+        selectedIndex,
+        "EVENT: onTimeChange"
+      );
+    if (textSplit[selectedWord]?.trim())
+      textSplit[selectedWord] = `<span>${textSplit[selectedWord]}</span>`;
+    console.log(textSplit.join(" "), selectedWord);
+    messageText.current.innerHTML = textSplit.join(" ");
+  };
+  const onPlaybackEnd = (e: any) => {
+    console.log(e, "EVENT:onPlaybackEnd");
+  };
+
   useEffect(() => {
-    console.log("call", selectedIndex);
-    appendTextInTypeEffect();
-  }, [selectedIndex, appendTextInTypeEffect]);
+    console.log(selectedIndex, visitedIndex, "visitedIndex");
+    audioRef.current.ontimeupdate = onTimeChange;
+    audioRef.current.onended = onPlaybackEnd;
+
+    if (selectedIndex >= visitedIndex) audioRef.current.play();
+    messageText.current.innerHTML = block[selectedIndex].message_text;
+  }, [selectedIndex]);
+
+  const onToggleAudio = () => {
+    anime({
+      targets: muteBtn.current,
+      duration: duration,
+      scale: [
+        { value: 0.5, easing: "easeOutSine", duration: 100 },
+        { value: 1, easing: "easeInOutQuad", duration: 100 },
+      ],
+      easing,
+    }).finished;
+    setMute(!mute);
+    audioRef.current.muted = !audioRef.current?.muted;
+  };
+
+  const onReplay = () => {
+    anime({
+      targets: replayBtn.current,
+      duration: duration,
+      scale: [
+        { value: 0.5, easing: "easeOutSine", duration: 100 },
+        { value: 1, easing: "easeInOutQuad", duration: 100 },
+      ],
+      easing,
+    }).finished;
+    audioRef.current.currentTime = 0;
+    audioRef.current.muted = false;
+    setMute(false);
+    audioRef.current?.play();
+  };
 
   console.log(preloadImages, block[selectedIndex].panel_type, "preloadImages");
 
@@ -552,7 +664,7 @@ export default function Home() {
               ? styles.fox_img_show
               : styles.fox_img_hide
           }
-          src="/images/fox.svg"
+          src="/images/fox.png"
           alt="Fox"
           width={100}
           height={100}
@@ -562,19 +674,25 @@ export default function Home() {
           className={styles["message__action-items"]}
         >
           <Image
+            ref={muteBtn}
             priority
-            src="/images/audio.svg"
+            onClick={onToggleAudio}
+            src={mute ? "/images/m-audio.svg" : "/images/audio.svg"}
             alt="Back"
             width={40}
             height={40}
           />
-          <Image
-            priority
-            src="/images/refresh.svg"
-            alt="Back"
-            width={40}
-            height={40}
-          />
+          <div ref={replayBtn} className={styles["replay-btn"]}>
+            <Image
+              ref={replayBtn}
+              priority
+              onClick={onReplay}
+              src="/images/refresh.svg"
+              alt="Back"
+              width={40}
+              height={40}
+            />
+          </div>
         </div>
         <div className={styles.message_parent}>
           {currentScreenType !== "question" && (
@@ -592,11 +710,17 @@ export default function Home() {
                 width={70}
                 height={70}
               />
-              {isType && <div className={block[selectedIndex]?.user?.avatar === "girl"
-                  ? styles["type-anim_girl"]
-                  : styles["type-anim_boy"]}>
-                <span className={styles["dot-typing"]}></span>
-              </div>}
+              {isType && (
+                <div
+                  className={
+                    block[selectedIndex]?.user?.avatar === "girl"
+                      ? styles["type-anim_girl"]
+                      : styles["type-anim_boy"]
+                  }
+                >
+                  <span className={styles["dot-typing"]}></span>
+                </div>
+              )}
             </div>
           )}
           <div ref={messageBlock} className={styles.message_block}>
@@ -604,8 +728,7 @@ export default function Home() {
               <p
                 ref={messageText}
                 data-text={block[selectedIndex].message_text}
-              >
-              </p>
+              ></p>
             </div>
             <div ref={continueButton} className={styles.button_block}>
               <button onClick={onNext}>Continue</button>
@@ -619,6 +742,17 @@ export default function Home() {
   return (
     <>
       <div className={styles.main}>
+        <audio
+          muted={mute}
+          ref={audioRef}
+          src={
+            block[selectedIndex]?.user?.avatar === "girl"
+              ? "/audio/ana.wav"
+              : "/audio/roger.wav"
+          }
+        >
+          Your browser does not support the audio element.
+        </audio>
         <div className={styles.splash_container}>
           <div className={styles.overlay_image}></div>
           {preloadImages[block[selectedIndex].panel_id] ? (
