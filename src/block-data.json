@@ -8,7 +8,7 @@
             "avatar": "girl"
         },
         "message_text": "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
-        "audio": "/audio/ana.wav",
+        "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbsc/7std/science/chpt1/blk1/pnl_001/msg1.mp3",
         "audio_transcript": [
             {
                 "Word": "hey",
@@ -149,7 +149,7 @@
             "avatar": "boy"
         },
         "message_text": "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
-        "audio": "/audio/roger.wav",
+        "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbsc/7std/science/chpt1/blk1/pnl_001/mgs2.mp3",
         "audio_transcript": [
             {
                 "Word": "hey",
@@ -357,7 +357,7 @@
             "avatar": "girl"
         },
         "message_text": "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
-        "audio": "/audio/ana.wav",
+        "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbsc/7std/science/chpt1/blk1/pnl_001/msg1.mp3",
         "audio_transcript": [
             {
                 "Word": "hey",
@@ -498,7 +498,7 @@
             "avatar": "boy"
         },
         "message_text": "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
-        "audio": "/audio/roger.wav",
+        "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbsc/7std/science/chpt1/blk1/pnl_001/mgs2.mp3",
         "audio_transcript": [
             {
                 "Word": "hey",
@@ -706,7 +706,7 @@
             "avatar": "girl"
         },
         "message_text": "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
-        "audio": "/audio/ana.wav",
+        "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbsc/7std/science/chpt1/blk1/pnl_001/msg1.mp3",
         "audio_transcript": [
             {
                 "Word": "hey",
@@ -847,7 +847,7 @@
             "avatar": "boy"
         },
         "message_text": "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
-        "audio": "/audio/roger.wav",
+        "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbsc/7std/science/chpt1/blk1/pnl_001/mgs2.mp3",
         "audio_transcript": [
             {
                 "Word": "hey",
