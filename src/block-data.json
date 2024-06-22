@@ -1,0 +1,947 @@
+[
+    {
+        "panel_type": "story",
+        "panel_id": "_1",
+        "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
+        "user": {
+            "avatar": "girl"
+        },
+        "message_text": "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
+        "audio": "/audio/ana.wav",
+        "audio_transcript": [
+            {
+                "Word": "hey",
+                "Offset": 700000,
+                "Duration": 5600000,
+                "start": 0.07,
+                "duraion_sec": 0.56,
+                "end": 0.6300000000000001
+            },
+            {
+                "Word": "do",
+                "Offset": 7100000,
+                "Duration": 1600000,
+                "start": 0.71,
+                "duraion_sec": 0.16,
+                "end": 0.87
+            },
+            {
+                "Word": "you",
+                "Offset": 8700000,
+                "Duration": 1600000,
+                "start": 0.87,
+                "duraion_sec": 0.16,
+                "end": 1.03
+            },
+            {
+                "Word": "remember",
+                "Offset": 10300000,
+                "Duration": 5200000,
+                "start": 1.03,
+                "duraion_sec": 0.52,
+                "end": 1.55
+            },
+            {
+                "Word": "learning",
+                "Offset": 15500000,
+                "Duration": 4000000,
+                "start": 1.55,
+                "duraion_sec": 0.4,
+                "end": 1.9500000000000002
+            },
+            {
+                "Word": "in",
+                "Offset": 19500000,
+                "Duration": 1600000,
+                "start": 1.95,
+                "duraion_sec": 0.16,
+                "end": 2.11
+            },
+            {
+                "Word": "class",
+                "Offset": 21100000,
+                "Duration": 4400000,
+                "start": 2.11,
+                "duraion_sec": 0.44,
+                "end": 2.55
+            },
+            {
+                "Word": "six",
+                "Offset": 25500000,
+                "Duration": 3600000,
+                "start": 2.55,
+                "duraion_sec": 0.36,
+                "end": 2.9099999999999997
+            },
+            {
+                "Word": "that",
+                "Offset": 29100000,
+                "Duration": 2000000,
+                "start": 2.91,
+                "duraion_sec": 0.2,
+                "end": 3.1100000000000003
+            },
+            {
+                "Word": "food",
+                "Offset": 31100000,
+                "Duration": 3600000,
+                "start": 3.11,
+                "duraion_sec": 0.36,
+                "end": 3.4699999999999998
+            },
+            {
+                "Word": "is",
+                "Offset": 34700000,
+                "Duration": 2800000,
+                "start": 3.47,
+                "duraion_sec": 0.28,
+                "end": 3.75
+            },
+            {
+                "Word": "essential",
+                "Offset": 37500000,
+                "Duration": 4800000,
+                "start": 3.75,
+                "duraion_sec": 0.48,
+                "end": 4.23
+            },
+            {
+                "Word": "for",
+                "Offset": 42300000,
+                "Duration": 2400000,
+                "start": 4.23,
+                "duraion_sec": 0.24,
+                "end": 4.470000000000001
+            },
+            {
+                "Word": "all",
+                "Offset": 44700000,
+                "Duration": 2800000,
+                "start": 4.47,
+                "duraion_sec": 0.28,
+                "end": 4.75
+            },
+            {
+                "Word": "living",
+                "Offset": 47500000,
+                "Duration": 3200000,
+                "start": 4.75,
+                "duraion_sec": 0.32,
+                "end": 5.07
+            },
+            {
+                "Word": "organisms",
+                "Offset": 50700000,
+                "Duration": 10000000,
+                "start": 5.07,
+                "duraion_sec": 1,
+                "end": 6.07
+            }
+        ]
+    },
+    {
+        "panel_type": "story",
+        "panel_id": "_1",
+        "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
+        "user": {
+            "avatar": "boy"
+        },
+        "message_text": "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
+        "audio": "/audio/roger.wav",
+        "audio_transcript": [
+            {
+                "Word": "hey",
+                "Offset": 700000,
+                "Duration": 6000000,
+                "start": 0.07,
+                "duraion_sec": 0.6,
+                "end": 0.6699999999999999
+            },
+            {
+                "Word": "ever",
+                "Offset": 9500000,
+                "Duration": 2800000,
+                "start": 0.95,
+                "duraion_sec": 0.28,
+                "end": 1.23
+            },
+            {
+                "Word": "wondered",
+                "Offset": 12300000,
+                "Duration": 4000000,
+                "start": 1.23,
+                "duraion_sec": 0.4,
+                "end": 1.63
+            },
+            {
+                "Word": "where",
+                "Offset": 16300000,
+                "Duration": 2000000,
+                "start": 1.63,
+                "duraion_sec": 0.2,
+                "end": 1.8299999999999998
+            },
+            {
+                "Word": "plants",
+                "Offset": 18300000,
+                "Duration": 4000000,
+                "start": 1.83,
+                "duraion_sec": 0.4,
+                "end": 2.23
+            },
+            {
+                "Word": "make",
+                "Offset": 22300000,
+                "Duration": 1600000,
+                "start": 2.23,
+                "duraion_sec": 0.16,
+                "end": 2.39
+            },
+            {
+                "Word": "their",
+                "Offset": 23900000,
+                "Duration": 2400000,
+                "start": 2.39,
+                "duraion_sec": 0.24,
+                "end": 2.63
+            },
+            {
+                "Word": "food",
+                "Offset": 26300000,
+                "Duration": 4800000,
+                "start": 2.63,
+                "duraion_sec": 0.48,
+                "end": 3.11
+            },
+            {
+                "Word": "is",
+                "Offset": 36700000,
+                "Duration": 2400000,
+                "start": 3.67,
+                "duraion_sec": 0.24,
+                "end": 3.91
+            },
+            {
+                "Word": "it",
+                "Offset": 39100000,
+                "Duration": 1200000,
+                "start": 3.91,
+                "duraion_sec": 0.12,
+                "end": 4.03
+            },
+            {
+                "Word": "in",
+                "Offset": 40300000,
+                "Duration": 1600000,
+                "start": 4.03,
+                "duraion_sec": 0.16,
+                "end": 4.19
+            },
+            {
+                "Word": "all",
+                "Offset": 41900000,
+                "Duration": 2800000,
+                "start": 4.19,
+                "duraion_sec": 0.28,
+                "end": 4.470000000000001
+            },
+            {
+                "Word": "parts",
+                "Offset": 44700000,
+                "Duration": 4000000,
+                "start": 4.47,
+                "duraion_sec": 0.4,
+                "end": 4.87
+            },
+            {
+                "Word": "of",
+                "Offset": 48700000,
+                "Duration": 800000,
+                "start": 4.87,
+                "duraion_sec": 0.08,
+                "end": 4.95
+            },
+            {
+                "Word": "the",
+                "Offset": 49500000,
+                "Duration": 1200000,
+                "start": 4.95,
+                "duraion_sec": 0.12,
+                "end": 5.07
+            },
+            {
+                "Word": "plant",
+                "Offset": 50700000,
+                "Duration": 5600000,
+                "start": 5.07,
+                "duraion_sec": 0.56,
+                "end": 5.630000000000001
+            },
+            {
+                "Word": "or",
+                "Offset": 57900000,
+                "Duration": 2400000,
+                "start": 5.79,
+                "duraion_sec": 0.24,
+                "end": 6.03
+            },
+            {
+                "Word": "just",
+                "Offset": 60300000,
+                "Duration": 2800000,
+                "start": 6.03,
+                "duraion_sec": 0.28,
+                "end": 6.3100000000000005
+            },
+            {
+                "Word": "in",
+                "Offset": 63100000,
+                "Duration": 1600000,
+                "start": 6.31,
+                "duraion_sec": 0.16,
+                "end": 6.47
+            },
+            {
+                "Word": "certain",
+                "Offset": 64700000,
+                "Duration": 3600000,
+                "start": 6.47,
+                "duraion_sec": 0.36,
+                "end": 6.83
+            },
+            {
+                "Word": "areas",
+                "Offset": 68300000,
+                "Duration": 6400000,
+                "start": 6.83,
+                "duraion_sec": 0.64,
+                "end": 7.47
+            }
+        ],
+        "question": {
+            "panel_type": "question",
+            "panel_id": "_1",
+            "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
+            "text": "What Are The Primary Components of Food Discussed in the Classroom?",
+            "options": [
+                {
+                    "title": "Water and Soil",
+                    "value": "Water and Soil"
+                },
+                {
+                    "title": "Carbohydrates, Proteins, and Fats",
+                    "value": "Carbohydrates, Proteins, and Fats"
+                },
+                {
+                    "title": "Gases and Liquids",
+                    "value": "Gases and Liquids"
+                },
+                {
+                    "title": "Metals and Plastics",
+                    "value": "Gases and Liquids"
+                }
+            ],
+            "audio": ""
+        }
+    },
+    {
+        "panel_type": "story",
+        "panel_id": "_2",
+        "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_003/poster_bg_std07_science_ch1_bl01_pnl_003_1_5x.webp",
+        "user": {
+            "avatar": "girl"
+        },
+        "message_text": "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
+        "audio": "/audio/ana.wav",
+        "audio_transcript": [
+            {
+                "Word": "hey",
+                "Offset": 700000,
+                "Duration": 5600000,
+                "start": 0.07,
+                "duraion_sec": 0.56,
+                "end": 0.6300000000000001
+            },
+            {
+                "Word": "do",
+                "Offset": 7100000,
+                "Duration": 1600000,
+                "start": 0.71,
+                "duraion_sec": 0.16,
+                "end": 0.87
+            },
+            {
+                "Word": "you",
+                "Offset": 8700000,
+                "Duration": 1600000,
+                "start": 0.87,
+                "duraion_sec": 0.16,
+                "end": 1.03
+            },
+            {
+                "Word": "remember",
+                "Offset": 10300000,
+                "Duration": 5200000,
+                "start": 1.03,
+                "duraion_sec": 0.52,
+                "end": 1.55
+            },
+            {
+                "Word": "learning",
+                "Offset": 15500000,
+                "Duration": 4000000,
+                "start": 1.55,
+                "duraion_sec": 0.4,
+                "end": 1.9500000000000002
+            },
+            {
+                "Word": "in",
+                "Offset": 19500000,
+                "Duration": 1600000,
+                "start": 1.95,
+                "duraion_sec": 0.16,
+                "end": 2.11
+            },
+            {
+                "Word": "class",
+                "Offset": 21100000,
+                "Duration": 4400000,
+                "start": 2.11,
+                "duraion_sec": 0.44,
+                "end": 2.55
+            },
+            {
+                "Word": "six",
+                "Offset": 25500000,
+                "Duration": 3600000,
+                "start": 2.55,
+                "duraion_sec": 0.36,
+                "end": 2.9099999999999997
+            },
+            {
+                "Word": "that",
+                "Offset": 29100000,
+                "Duration": 2000000,
+                "start": 2.91,
+                "duraion_sec": 0.2,
+                "end": 3.1100000000000003
+            },
+            {
+                "Word": "food",
+                "Offset": 31100000,
+                "Duration": 3600000,
+                "start": 3.11,
+                "duraion_sec": 0.36,
+                "end": 3.4699999999999998
+            },
+            {
+                "Word": "is",
+                "Offset": 34700000,
+                "Duration": 2800000,
+                "start": 3.47,
+                "duraion_sec": 0.28,
+                "end": 3.75
+            },
+            {
+                "Word": "essential",
+                "Offset": 37500000,
+                "Duration": 4800000,
+                "start": 3.75,
+                "duraion_sec": 0.48,
+                "end": 4.23
+            },
+            {
+                "Word": "for",
+                "Offset": 42300000,
+                "Duration": 2400000,
+                "start": 4.23,
+                "duraion_sec": 0.24,
+                "end": 4.470000000000001
+            },
+            {
+                "Word": "all",
+                "Offset": 44700000,
+                "Duration": 2800000,
+                "start": 4.47,
+                "duraion_sec": 0.28,
+                "end": 4.75
+            },
+            {
+                "Word": "living",
+                "Offset": 47500000,
+                "Duration": 3200000,
+                "start": 4.75,
+                "duraion_sec": 0.32,
+                "end": 5.07
+            },
+            {
+                "Word": "organisms",
+                "Offset": 50700000,
+                "Duration": 10000000,
+                "start": 5.07,
+                "duraion_sec": 1,
+                "end": 6.07
+            }
+        ]
+    },
+    {
+        "panel_type": "story",
+        "panel_id": "_2",
+        "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_003/poster_bg_std07_science_ch1_bl01_pnl_003_1_5x.webp",
+        "user": {
+            "avatar": "boy"
+        },
+        "message_text": "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
+        "audio": "/audio/roger.wav",
+        "audio_transcript": [
+            {
+                "Word": "hey",
+                "Offset": 700000,
+                "Duration": 6000000,
+                "start": 0.07,
+                "duraion_sec": 0.6,
+                "end": 0.6699999999999999
+            },
+            {
+                "Word": "ever",
+                "Offset": 9500000,
+                "Duration": 2800000,
+                "start": 0.95,
+                "duraion_sec": 0.28,
+                "end": 1.23
+            },
+            {
+                "Word": "wondered",
+                "Offset": 12300000,
+                "Duration": 4000000,
+                "start": 1.23,
+                "duraion_sec": 0.4,
+                "end": 1.63
+            },
+            {
+                "Word": "where",
+                "Offset": 16300000,
+                "Duration": 2000000,
+                "start": 1.63,
+                "duraion_sec": 0.2,
+                "end": 1.8299999999999998
+            },
+            {
+                "Word": "plants",
+                "Offset": 18300000,
+                "Duration": 4000000,
+                "start": 1.83,
+                "duraion_sec": 0.4,
+                "end": 2.23
+            },
+            {
+                "Word": "make",
+                "Offset": 22300000,
+                "Duration": 1600000,
+                "start": 2.23,
+                "duraion_sec": 0.16,
+                "end": 2.39
+            },
+            {
+                "Word": "their",
+                "Offset": 23900000,
+                "Duration": 2400000,
+                "start": 2.39,
+                "duraion_sec": 0.24,
+                "end": 2.63
+            },
+            {
+                "Word": "food",
+                "Offset": 26300000,
+                "Duration": 4800000,
+                "start": 2.63,
+                "duraion_sec": 0.48,
+                "end": 3.11
+            },
+            {
+                "Word": "is",
+                "Offset": 36700000,
+                "Duration": 2400000,
+                "start": 3.67,
+                "duraion_sec": 0.24,
+                "end": 3.91
+            },
+            {
+                "Word": "it",
+                "Offset": 39100000,
+                "Duration": 1200000,
+                "start": 3.91,
+                "duraion_sec": 0.12,
+                "end": 4.03
+            },
+            {
+                "Word": "in",
+                "Offset": 40300000,
+                "Duration": 1600000,
+                "start": 4.03,
+                "duraion_sec": 0.16,
+                "end": 4.19
+            },
+            {
+                "Word": "all",
+                "Offset": 41900000,
+                "Duration": 2800000,
+                "start": 4.19,
+                "duraion_sec": 0.28,
+                "end": 4.470000000000001
+            },
+            {
+                "Word": "parts",
+                "Offset": 44700000,
+                "Duration": 4000000,
+                "start": 4.47,
+                "duraion_sec": 0.4,
+                "end": 4.87
+            },
+            {
+                "Word": "of",
+                "Offset": 48700000,
+                "Duration": 800000,
+                "start": 4.87,
+                "duraion_sec": 0.08,
+                "end": 4.95
+            },
+            {
+                "Word": "the",
+                "Offset": 49500000,
+                "Duration": 1200000,
+                "start": 4.95,
+                "duraion_sec": 0.12,
+                "end": 5.07
+            },
+            {
+                "Word": "plant",
+                "Offset": 50700000,
+                "Duration": 5600000,
+                "start": 5.07,
+                "duraion_sec": 0.56,
+                "end": 5.630000000000001
+            },
+            {
+                "Word": "or",
+                "Offset": 57900000,
+                "Duration": 2400000,
+                "start": 5.79,
+                "duraion_sec": 0.24,
+                "end": 6.03
+            },
+            {
+                "Word": "just",
+                "Offset": 60300000,
+                "Duration": 2800000,
+                "start": 6.03,
+                "duraion_sec": 0.28,
+                "end": 6.3100000000000005
+            },
+            {
+                "Word": "in",
+                "Offset": 63100000,
+                "Duration": 1600000,
+                "start": 6.31,
+                "duraion_sec": 0.16,
+                "end": 6.47
+            },
+            {
+                "Word": "certain",
+                "Offset": 64700000,
+                "Duration": 3600000,
+                "start": 6.47,
+                "duraion_sec": 0.36,
+                "end": 6.83
+            },
+            {
+                "Word": "areas",
+                "Offset": 68300000,
+                "Duration": 6400000,
+                "start": 6.83,
+                "duraion_sec": 0.64,
+                "end": 7.47
+            }
+        ]
+    },
+    {
+        "panel_type": "story",
+        "panel_id": "_3",
+        "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_004/poster_bg_std07_science_ch1_bl01_pnl_004_1_5x.webp",
+        "user": {
+            "avatar": "girl"
+        },
+        "message_text": "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
+        "audio": "/audio/ana.wav",
+        "audio_transcript": [
+            {
+                "Word": "hey",
+                "Offset": 700000,
+                "Duration": 5600000,
+                "start": 0.07,
+                "duraion_sec": 0.56,
+                "end": 0.6300000000000001
+            },
+            {
+                "Word": "do",
+                "Offset": 7100000,
+                "Duration": 1600000,
+                "start": 0.71,
+                "duraion_sec": 0.16,
+                "end": 0.87
+            },
+            {
+                "Word": "you",
+                "Offset": 8700000,
+                "Duration": 1600000,
+                "start": 0.87,
+                "duraion_sec": 0.16,
+                "end": 1.03
+            },
+            {
+                "Word": "remember",
+                "Offset": 10300000,
+                "Duration": 5200000,
+                "start": 1.03,
+                "duraion_sec": 0.52,
+                "end": 1.55
+            },
+            {
+                "Word": "learning",
+                "Offset": 15500000,
+                "Duration": 4000000,
+                "start": 1.55,
+                "duraion_sec": 0.4,
+                "end": 1.9500000000000002
+            },
+            {
+                "Word": "in",
+                "Offset": 19500000,
+                "Duration": 1600000,
+                "start": 1.95,
+                "duraion_sec": 0.16,
+                "end": 2.11
+            },
+            {
+                "Word": "class",
+                "Offset": 21100000,
+                "Duration": 4400000,
+                "start": 2.11,
+                "duraion_sec": 0.44,
+                "end": 2.55
+            },
+            {
+                "Word": "six",
+                "Offset": 25500000,
+                "Duration": 3600000,
+                "start": 2.55,
+                "duraion_sec": 0.36,
+                "end": 2.9099999999999997
+            },
+            {
+                "Word": "that",
+                "Offset": 29100000,
+                "Duration": 2000000,
+                "start": 2.91,
+                "duraion_sec": 0.2,
+                "end": 3.1100000000000003
+            },
+            {
+                "Word": "food",
+                "Offset": 31100000,
+                "Duration": 3600000,
+                "start": 3.11,
+                "duraion_sec": 0.36,
+                "end": 3.4699999999999998
+            },
+            {
+                "Word": "is",
+                "Offset": 34700000,
+                "Duration": 2800000,
+                "start": 3.47,
+                "duraion_sec": 0.28,
+                "end": 3.75
+            },
+            {
+                "Word": "essential",
+                "Offset": 37500000,
+                "Duration": 4800000,
+                "start": 3.75,
+                "duraion_sec": 0.48,
+                "end": 4.23
+            },
+            {
+                "Word": "for",
+                "Offset": 42300000,
+                "Duration": 2400000,
+                "start": 4.23,
+                "duraion_sec": 0.24,
+                "end": 4.470000000000001
+            },
+            {
+                "Word": "all",
+                "Offset": 44700000,
+                "Duration": 2800000,
+                "start": 4.47,
+                "duraion_sec": 0.28,
+                "end": 4.75
+            },
+            {
+                "Word": "living",
+                "Offset": 47500000,
+                "Duration": 3200000,
+                "start": 4.75,
+                "duraion_sec": 0.32,
+                "end": 5.07
+            },
+            {
+                "Word": "organisms",
+                "Offset": 50700000,
+                "Duration": 10000000,
+                "start": 5.07,
+                "duraion_sec": 1,
+                "end": 6.07
+            }
+        ]
+    },
+    {
+        "panel_type": "story",
+        "panel_id": "_3",
+        "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_004/poster_bg_std07_science_ch1_bl01_pnl_004_1_5x.webp",
+        "user": {
+            "avatar": "boy"
+        },
+        "message_text": "Hey, ever wondered where plants make their food? Is it in all parts of the plant or just in certain areas?",
+        "audio": "/audio/roger.wav",
+        "audio_transcript": [
+            {
+                "Word": "hey",
+                "Offset": 700000,
+                "Duration": 5600000,
+                "start": 0.07,
+                "duraion_sec": 0.56,
+                "end": 0.6300000000000001
+            },
+            {
+                "Word": "do",
+                "Offset": 7100000,
+                "Duration": 1600000,
+                "start": 0.71,
+                "duraion_sec": 0.16,
+                "end": 0.87
+            },
+            {
+                "Word": "you",
+                "Offset": 8700000,
+                "Duration": 1600000,
+                "start": 0.87,
+                "duraion_sec": 0.16,
+                "end": 1.03
+            },
+            {
+                "Word": "remember",
+                "Offset": 10300000,
+                "Duration": 5200000,
+                "start": 1.03,
+                "duraion_sec": 0.52,
+                "end": 1.55
+            },
+            {
+                "Word": "learning",
+                "Offset": 15500000,
+                "Duration": 4000000,
+                "start": 1.55,
+                "duraion_sec": 0.4,
+                "end": 1.9500000000000002
+            },
+            {
+                "Word": "in",
+                "Offset": 19500000,
+                "Duration": 1600000,
+                "start": 1.95,
+                "duraion_sec": 0.16,
+                "end": 2.11
+            },
+            {
+                "Word": "class",
+                "Offset": 21100000,
+                "Duration": 4400000,
+                "start": 2.11,
+                "duraion_sec": 0.44,
+                "end": 2.55
+            },
+            {
+                "Word": "six",
+                "Offset": 25500000,
+                "Duration": 3600000,
+                "start": 2.55,
+                "duraion_sec": 0.36,
+                "end": 2.9099999999999997
+            },
+            {
+                "Word": "that",
+                "Offset": 29100000,
+                "Duration": 2000000,
+                "start": 2.91,
+                "duraion_sec": 0.2,
+                "end": 3.1100000000000003
+            },
+            {
+                "Word": "food",
+                "Offset": 31100000,
+                "Duration": 3600000,
+                "start": 3.11,
+                "duraion_sec": 0.36,
+                "end": 3.4699999999999998
+            },
+            {
+                "Word": "is",
+                "Offset": 34700000,
+                "Duration": 2800000,
+                "start": 3.47,
+                "duraion_sec": 0.28,
+                "end": 3.75
+            },
+            {
+                "Word": "essential",
+                "Offset": 37500000,
+                "Duration": 4800000,
+                "start": 3.75,
+                "duraion_sec": 0.48,
+                "end": 4.23
+            },
+            {
+                "Word": "for",
+                "Offset": 42300000,
+                "Duration": 2400000,
+                "start": 4.23,
+                "duraion_sec": 0.24,
+                "end": 4.470000000000001
+            },
+            {
+                "Word": "all",
+                "Offset": 44700000,
+                "Duration": 2800000,
+                "start": 4.47,
+                "duraion_sec": 0.28,
+                "end": 4.75
+            },
+            {
+                "Word": "living",
+                "Offset": 47500000,
+                "Duration": 3200000,
+                "start": 4.75,
+                "duraion_sec": 0.32,
+                "end": 5.07
+            },
+            {
+                "Word": "organisms",
+                "Offset": 50700000,
+                "Duration": 10000000,
+                "start": 5.07,
+                "duraion_sec": 1,
+                "end": 6.07
+            }
+        ]
+    }
+]
