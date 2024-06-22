@@ -27,6 +27,7 @@ export default function Home() {
   const backButton = useRef<any>(null);
   const messageActionBlock = useRef<any>(null);
   const audioRef = useRef<any>(null);
+  const backgroundColorRef = useRef<any>(null);
   const muteBtn = useRef<any>(null);
   const replayBtn = useRef<any>(null);
   const selectBtn = useRef<any>([]);
@@ -96,6 +97,10 @@ export default function Home() {
       currentScreenType === "question";
     messageText.current.innerHTML = ``;
 
+    if (currentScreenType === "question") {
+      setCurrentScreenType("story");
+    }
+
     if (!stopAnimate) {
       await animateImageSlideOut();
     }
@@ -105,7 +110,10 @@ export default function Home() {
       setSelectedIndex(_selectedIndex);
       if (_selectedIndex + 1 < block.length - 1) {
         if (block[_selectedIndex + 1].image !== block[_selectedIndex].image) {
-          if (!_preloadImages[block[_selectedIndex + 1].panel_id]) {
+          if (
+            !_preloadImages[block[_selectedIndex + 1].panel_id] &&
+            currentScreenType !== "question"
+          ) {
             const nextImage = ImagePreload(block[_selectedIndex + 1].image);
             setPreloadImages({
               ..._preloadImages,
@@ -143,19 +151,23 @@ export default function Home() {
     }
     let _selectedIndex = selectedIndex - 1;
     if (_selectedIndex < 0) {
-      setSelectedIndex(0);
+      _selectedIndex = 0;
+      setSelectedIndex(_selectedIndex);
     } else {
       setSelectedIndex(_selectedIndex);
     }
     messageText.current.innerHTML = block[_selectedIndex].message_text;
     audioRef.current.pause();
   };
-  const onSelectAns = (el: any, index: any) => {
-    debugger;
-    console.log(el, "ELEMENT");
+  const onSelectAns = (el: any, index: any, value: any) => {
+    if (!hideContinueBtn) return;
     animateOptionButton(el);
-    el.style.backgroundColor = "#ff001166";
-    setHideContinueBtn(false);
+    if (block[selectedIndex].question?.answer === value) {
+      setHideContinueBtn(false);
+      el.style.backgroundColor = "#8bc34a66";
+    } else {
+      el.style.backgroundColor = "#ff001166";
+    }
   };
 
   const animateOptionButton = (el: any) => {
@@ -274,6 +286,7 @@ export default function Home() {
   };
 
   const animateReverseQuestion = async () => {
+    setCurrentScreenType("story");
     await anime({
       targets: imageFrame.current,
       duration: duration,
@@ -316,7 +329,7 @@ export default function Home() {
     //   keyframes: [{ height: "auto", width: "100%" }],
     //   easing,
     // });
-    setCurrentScreenType("story");
+
     return;
   };
 
@@ -432,15 +445,15 @@ export default function Home() {
           )}
         </div>
 
-        {preloadImages[block[selectedIndex].panel_id] && (
-          <div
-            className={styles.image_frame}
-            ref={imageFrame}
-            dangerouslySetInnerHTML={{
-              __html: preloadImages[block[selectedIndex].panel_id],
-            }}
-          />
-        )}
+        {/* {preloadImages[block[selectedIndex].panel_id] && ( */}
+        <div
+          className={styles.image_frame}
+          ref={imageFrame}
+          dangerouslySetInnerHTML={{
+            __html: preloadImages[block[selectedIndex].panel_id],
+          }}
+        />
+        {/* )} */}
       </div>
       <div className={styles.message__container}>
         <Image
@@ -481,41 +494,41 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.message_parent}>
-          {currentScreenType !== "question" && (
-            <>
-              <div
-                className={[
-                  styles.message_avatar_girl,
-                  block[selectedIndex]?.user?.avatar === "girl"
-                    ? styles.show
-                    : styles.hide,
-                ].join(" ")}
-              >
-                <Image
-                  src={`/images/girl_image.png`}
-                  alt="girl"
-                  width={70}
-                  height={70}
-                />
-              </div>
-              <div
-                className={[
-                  styles.message_avatar_boy,
-                  block[selectedIndex]?.user?.avatar === "boy"
-                    ? styles.show
-                    : styles.hide,
-                ].join(" ")}
-              >
-                <Image
-                  priority
-                  src={`/images/boy_image.png`}
-                  alt="boy"
-                  width={70}
-                  height={70}
-                />
-              </div>
-            </>
-          )}
+          <>
+            <div
+              className={[
+                styles.message_avatar_girl,
+                block[selectedIndex]?.user?.avatar === "girl" &&
+                currentScreenType !== "question"
+                  ? styles.show
+                  : styles.hide,
+              ].join(" ")}
+            >
+              <Image
+                src={`/images/girl_image.png`}
+                alt="girl"
+                width={70}
+                height={70}
+              />
+            </div>
+            <div
+              className={[
+                styles.message_avatar_boy,
+                block[selectedIndex]?.user?.avatar === "boy" &&
+                currentScreenType !== "question"
+                  ? styles.show
+                  : styles.hide,
+              ].join(" ")}
+            >
+              <Image
+                priority
+                src={`/images/boy_image.png`}
+                alt="boy"
+                width={70}
+                height={70}
+              />
+            </div>
+          </>
           <div ref={messageBlock} className={styles.message_block}>
             {currentScreenType === "question" && (
               <div className={styles.clock_block}>
@@ -536,16 +549,19 @@ export default function Home() {
             </div>
             {currentScreenType === "question" && (
               <div className={styles.option_block}>
-                {block[selectedIndex]?.question?.options?.map((e: any, i) => (
-                  <div
-                    ref={el => (selectBtn.current[i] = el)}
-                    onClick={() => onSelectAns(selectBtn.current[i], i)}
-                    className={[styles.option_item].join()}
-                    key={i}
-                  >
-                    {e.title}
-                  </div>
-                ))}
+                {block[selectedIndex]?.question?.question_type === "choice" &&
+                  block[selectedIndex]?.question?.options?.map((e: any, i) => (
+                    <div
+                      ref={el => (selectBtn.current[i] = el)}
+                      onClick={() =>
+                        onSelectAns(selectBtn.current[i], i, e.value)
+                      }
+                      className={[styles.option_item].join()}
+                      key={i}
+                    >
+                      {e.title}
+                    </div>
+                  ))}
               </div>
             )}
 
@@ -585,14 +601,14 @@ export default function Home() {
         </audio>
         <div className={styles.splash_container}>
           <div className={styles.overlay_image}></div>
-          {preloadImages[block[selectedIndex].panel_id] && (
-            <div
-              className={styles.background_image}
-              dangerouslySetInnerHTML={{
-                __html: preloadImages[block[selectedIndex].panel_id],
-              }}
-            />
-          )}
+          <div
+            ref={backgroundColorRef}
+            style={{backgroundColor: block[selectedIndex].panel_color || "#000"}}
+            className={styles.background_image}
+            dangerouslySetInnerHTML={{
+              __html: preloadImages[block[selectedIndex].panel_id],
+            }}
+          />
 
           {panelBlock}
         </div>

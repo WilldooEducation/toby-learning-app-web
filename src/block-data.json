@@ -2,6 +2,7 @@
     {
         "panel_type": "story",
         "panel_id": "_1",
+        "panel_color": "#bf946a",
         "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
         "user": {
             "avatar": "girl"
@@ -142,6 +143,7 @@
     {
         "panel_type": "story",
         "panel_id": "_1",
+        "panel_color": "#bf946a",
         "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
         "user": {
             "avatar": "boy"
@@ -321,6 +323,7 @@
         "question": {
             "panel_type": "question",
             "panel_id": "_1",
+            "question_type": "choice",
             "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
             "text": "What Are The Primary Components of Food Discussed in the Classroom?",
             "options": [
@@ -341,12 +344,14 @@
                     "value": "Gases and Liquids"
                 }
             ],
+            "answer": "Water and Soil",
             "audio": ""
         }
     },
     {
         "panel_type": "story",
         "panel_id": "_2",
+        "panel_color": "#31512a",
         "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_003/poster_bg_std07_science_ch1_bl01_pnl_003_1_5x.webp",
         "user": {
             "avatar": "girl"
@@ -487,6 +492,7 @@
     {
         "panel_type": "story",
         "panel_id": "_2",
+        "panel_color": "#31512a",
         "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_003/poster_bg_std07_science_ch1_bl01_pnl_003_1_5x.webp",
         "user": {
             "avatar": "boy"
@@ -662,11 +668,39 @@
                 "duraion_sec": 0.64,
                 "end": 7.47
             }
-        ]
+        ],
+        "question": {
+            "panel_type": "question",
+            "panel_id": "_1",
+            "question_type": "choice",
+            "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
+            "text": "What Are The Primary Components of Food Discussed in the Classroom?",
+            "options": [
+                {
+                    "title": "Water and Soil",
+                    "value": "Water and Soil"
+                },
+                {
+                    "title": "Carbohydrates, Proteins, and Fats",
+                    "value": "Carbohydrates, Proteins, and Fats"
+                },
+                {
+                    "title": "Gases and Liquids",
+                    "value": "Gases and Liquids"
+                },
+                {
+                    "title": "Metals and Plastics",
+                    "value": "Gases and Liquids"
+                }
+            ],
+            "answer": "Water and Soil",
+            "audio": ""
+        }
     },
     {
         "panel_type": "story",
         "panel_id": "_3",
+        "panel_color": "#a7a063",
         "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_004/poster_bg_std07_science_ch1_bl01_pnl_004_1_5x.webp",
         "user": {
             "avatar": "girl"
@@ -807,6 +841,7 @@
     {
         "panel_type": "story",
         "panel_id": "_3",
+        "panel_color": "#a7a063",
         "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_004/poster_bg_std07_science_ch1_bl01_pnl_004_1_5x.webp",
         "user": {
             "avatar": "boy"
@@ -942,6 +977,33 @@
                 "duraion_sec": 1,
                 "end": 6.07
             }
-        ]
+        ],
+        "question": {
+            "panel_type": "question",
+            "panel_id": "_1",
+            "question_type": "choice",
+            "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
+            "text": "What Are The Primary Components of Food Discussed in the Classroom?",
+            "options": [
+                {
+                    "title": "Water and Soil",
+                    "value": "Water and Soil"
+                },
+                {
+                    "title": "Carbohydrates, Proteins, and Fats",
+                    "value": "Carbohydrates, Proteins, and Fats"
+                },
+                {
+                    "title": "Gases and Liquids",
+                    "value": "Gases and Liquids"
+                },
+                {
+                    "title": "Metals and Plastics",
+                    "value": "Gases and Liquids"
+                }
+            ],
+            "answer": "Water and Soil",
+            "audio": ""
+        }
     }
 ]

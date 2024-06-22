@@ -58,6 +58,7 @@
     .close_img {
       position: absolute;
       right: 0px;
+      z-index: 111;
       transition: all 0.35s ease-in;
     }
   }
