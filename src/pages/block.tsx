@@ -10,7 +10,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import anime from "animejs";
 import { ImagePreload } from "@/utils/imagePreload";
 import { AudioPreload } from "@/utils/audioPreload";
-import { Container, Draggable } from "react-smooth-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 let timeout: any;
 let stopAnimation: boolean = false;
 export default function Home() {
@@ -449,6 +449,14 @@ export default function Home() {
     audioRef.current?.play();
   };
 
+  const reorder = (list: any, startIndex: any, endIndex: any) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
   console.log(
     preloadImages,
     preloadAudio,
@@ -587,69 +595,95 @@ export default function Home() {
                 data-text={block[selectedIndex].message_text}
               ></p>
             </div>
-            {currentScreenType === "question" && (
-              <div className={styles.option_block}>
-                {block[selectedIndex]?.question?.question_type === "choice" &&
-                  questionOptions?.map((e: any, i: any) => (
-                    <div
-                      ref={el => (selectBtn.current[i] = el)}
-                      onClick={() =>
-                        onSelectAns(selectBtn.current[i], i, e.value)
-                      }
-                      className={[styles.option_item].join()}
-                      key={i}
-                    >
-                      {e.title}
-                    </div>
-                  ))}
-                {block[selectedIndex]?.question?.question_type ===
-                  "multichoice" &&
-                  questionOptions?.map((e: any, i: any) => (
-                    <div
-                      ref={el => (selectBtn.current[i] = el)}
-                      onClick={() =>
-                        onSelectMultichoiceAns(selectBtn.current[i], i, e.value)
-                      }
-                      className={[styles.option_item].join()}
-                      key={i}
-                    >
-                      {e.title}
-                    </div>
-                  ))}
-                {block[selectedIndex]?.question?.question_type ===
-                  "reorder" && (
-                  <Container
-                    onDrop={(e: any) => {
-                      console.log(e);
-                      if (questionOptions) {
-                        const copyExisting = [...(questionOptions || [])];
-                        copyExisting[e.addedIndex] =
-                          questionOptions[e.removedIndex];
-                        copyExisting[e.removedIndex] =
-                          questionOptions[e.addedIndex];
-                        setQuestionOptions(copyExisting);
-                        onAnsReorder(e, copyExisting);
-                      }
-                    }}
-                  >
-                    {questionOptions?.map((e: any, i: any) => (
-                      <Draggable
-                        className={styles.question_option_drag}
+            {currentScreenType === "question" &&
+              block[selectedIndex]?.question?.question_type !== "reorder" && (
+                <div className={styles.option_block}>
+                  {block[selectedIndex]?.question?.question_type === "choice" &&
+                    questionOptions?.map((e: any, i: any) => (
+                      <div
+                        ref={el => (selectBtn.current[i] = el)}
+                        onClick={() =>
+                          onSelectAns(selectBtn.current[i], i, e.value)
+                        }
+                        className={[styles.option_item].join()}
                         key={i}
                       >
-                        <div
-                          ref={el => (selectBtn.current[i] = el)}
-                          className={[styles.option_item].join()}
-                          key={i}
-                        >
-                          {e.title}
-                        </div>
-                      </Draggable>
+                        {e.title}
+                      </div>
                     ))}
-                  </Container>
-                )}
-              </div>
-            )}
+                  {block[selectedIndex]?.question?.question_type ===
+                    "multichoice" &&
+                    questionOptions?.map((e: any, i: any) => (
+                      <div
+                        ref={el => (selectBtn.current[i] = el)}
+                        onClick={() =>
+                          onSelectMultichoiceAns(
+                            selectBtn.current[i],
+                            i,
+                            e.value
+                          )
+                        }
+                        className={[styles.option_item].join()}
+                        key={i}
+                      >
+                        {e.title}
+                      </div>
+                    ))}
+                </div>
+              )}
+
+            {currentScreenType === "question" &&
+              block[selectedIndex]?.question?.question_type === "reorder" && (
+                <DragDropContext
+                  onDragEnd={(e: any) => {
+                    console.log(e);
+                    if (questionOptions && e.source && e.destination) {
+                      const copyExisting = [...questionOptions];
+                      const reOrderList = reorder(
+                        copyExisting,
+                        e.source?.index,
+                        e.destination?.index
+                      );
+                      setQuestionOptions(reOrderList);
+                      onAnsReorder(e, reOrderList);
+                    }
+                  }}
+                >
+                  <Droppable droppableId="droppable">
+                    {(provided, snapshot) => (
+                      <div
+                        className={styles.option_block}
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                      >
+                        {questionOptions.map((item: any, index: any) => (
+                          <Draggable
+                            key={item.id}
+                            index={index}
+                            draggableId={item.id}
+                          >
+                            {(provided, snapshot) => (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                              >
+                                <div
+                                  ref={el => (selectBtn.current[index] = el)}
+                                  className={[styles.option_item].join()}
+                                >
+                                  {item.title}
+                                </div>
+                              </div>
+                            )}
+                          </Draggable>
+                        ))}
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                </DragDropContext>
+              )}
 
             <div
               ref={continueButton}
