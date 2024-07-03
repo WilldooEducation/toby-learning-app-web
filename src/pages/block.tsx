@@ -10,6 +10,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import anime from "animejs";
 import { ImagePreload } from "@/utils/imagePreload";
 import { AudioPreload } from "@/utils/audioPreload";
+import { Container, Draggable } from "react-smooth-dnd";
 let timeout: any;
 let stopAnimation: boolean = false;
 export default function Home() {
@@ -37,6 +38,8 @@ export default function Home() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isType, setIsType] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
+  const [questionOptions, setQuestionOptions] = useState<any>([]);
+  const [multiSelect, setMultiSelect] = useState<any>([]);
   const [currentScreenType, setCurrentScreenType] = useState("story");
   const [visitedIndex, setVisitedIndex] = useState<any>(0);
   const [hideContinueBtn, setHideContinueBtn] = useState<any>(false);
@@ -88,6 +91,7 @@ export default function Home() {
 
       setCurrentScreenType("question");
       setHideContinueBtn(true);
+      setQuestionOptions(block[_selectedIndex].question?.options || []);
       return;
     }
 
@@ -99,6 +103,7 @@ export default function Home() {
 
     if (currentScreenType === "question") {
       setCurrentScreenType("story");
+      setQuestionOptions([]);
     }
 
     if (!stopAnimate) {
@@ -167,6 +172,41 @@ export default function Home() {
       el.style.backgroundColor = "#8bc34a66";
     } else {
       el.style.backgroundColor = "#ff001166";
+    }
+  };
+
+  const onSelectMultichoiceAns = (el: any, index: any, value: any) => {
+    if (!hideContinueBtn) return;
+    animateOptionButton(el);
+    if (block[selectedIndex].question?.answer.includes(value)) {
+      if (!multiSelect.includes(value)) {
+        const userAns = [...multiSelect, value];
+        setMultiSelect(userAns);
+
+        if (userAns.length === block[selectedIndex].question?.answer.length) {
+          setHideContinueBtn(false);
+          setMultiSelect([]);
+        }
+      }
+
+      el.style.backgroundColor = "#8bc34a66";
+    } else {
+      el.style.backgroundColor = "#ff001166";
+    }
+    console.log([...multiSelect, value], "SELECTED");
+  };
+
+  const onAnsReorder = (e: any, orderOptions: any) => {
+    console.log(e, selectBtn.current);
+    console.log(block[selectedIndex].question?.answer);
+    console.log(orderOptions.map((e: any) => e.value));
+    const answer = block[selectedIndex].question?.answer;
+    const givenAnser = orderOptions.map((e: any) => e.value);
+    if (JSON.stringify(answer) === JSON.stringify(givenAnser)) {
+      setHideContinueBtn(false);
+      for (const el of selectBtn.current) {
+        el.style.backgroundColor = "#8bc34a66";
+      }
     }
   };
 
@@ -550,7 +590,7 @@ export default function Home() {
             {currentScreenType === "question" && (
               <div className={styles.option_block}>
                 {block[selectedIndex]?.question?.question_type === "choice" &&
-                  block[selectedIndex]?.question?.options?.map((e: any, i) => (
+                  questionOptions?.map((e: any, i: any) => (
                     <div
                       ref={el => (selectBtn.current[i] = el)}
                       onClick={() =>
@@ -562,6 +602,52 @@ export default function Home() {
                       {e.title}
                     </div>
                   ))}
+                {block[selectedIndex]?.question?.question_type ===
+                  "multichoice" &&
+                  questionOptions?.map((e: any, i: any) => (
+                    <div
+                      ref={el => (selectBtn.current[i] = el)}
+                      onClick={() =>
+                        onSelectMultichoiceAns(selectBtn.current[i], i, e.value)
+                      }
+                      className={[styles.option_item].join()}
+                      key={i}
+                    >
+                      {e.title}
+                    </div>
+                  ))}
+                {block[selectedIndex]?.question?.question_type ===
+                  "reorder" && (
+                  <Container
+                    onDrop={(e: any) => {
+                      console.log(e);
+                      if (questionOptions) {
+                        const copyExisting = [...(questionOptions || [])];
+                        copyExisting[e.addedIndex] =
+                          questionOptions[e.removedIndex];
+                        copyExisting[e.removedIndex] =
+                          questionOptions[e.addedIndex];
+                        setQuestionOptions(copyExisting);
+                        onAnsReorder(e, copyExisting);
+                      }
+                    }}
+                  >
+                    {questionOptions?.map((e: any, i: any) => (
+                      <Draggable
+                        className={styles.question_option_drag}
+                        key={i}
+                      >
+                        <div
+                          ref={el => (selectBtn.current[i] = el)}
+                          className={[styles.option_item].join()}
+                          key={i}
+                        >
+                          {e.title}
+                        </div>
+                      </Draggable>
+                    ))}
+                  </Container>
+                )}
               </div>
             )}
 
@@ -603,7 +689,9 @@ export default function Home() {
           <div className={styles.overlay_image}></div>
           <div
             ref={backgroundColorRef}
-            style={{backgroundColor: block[selectedIndex].panel_color || "#000"}}
+            style={{
+              backgroundColor: block[selectedIndex].panel_color || "#000",
+            }}
             className={styles.background_image}
             dangerouslySetInnerHTML={{
               __html: preloadImages[block[selectedIndex].panel_id],

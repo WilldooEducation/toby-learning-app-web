@@ -341,7 +341,7 @@
                 },
                 {
                     "title": "Metals and Plastics",
-                    "value": "Gases and Liquids"
+                    "value": "Metals and Plastics"
                 }
             ],
             "answer": "Water and Soil",
@@ -672,12 +672,12 @@
         "question": {
             "panel_type": "question",
             "panel_id": "_1",
-            "question_type": "choice",
+            "question_type": "multichoice",
             "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
             "text": "What Are The Primary Components of Food Discussed in the Classroom?",
             "options": [
                 {
-                    "title": "Water and Soil",
+                    "title": "Q2 Water and Soil",
                     "value": "Water and Soil"
                 },
                 {
@@ -690,10 +690,10 @@
                 },
                 {
                     "title": "Metals and Plastics",
-                    "value": "Gases and Liquids"
+                    "value": "Metals and Plastics"
                 }
             ],
-            "answer": "Water and Soil",
+            "answer": ["Water and Soil", "Gases and Liquids"],
             "audio": ""
         }
     },
@@ -981,28 +981,28 @@
         "question": {
             "panel_type": "question",
             "panel_id": "_1",
-            "question_type": "choice",
+            "question_type": "reorder",
             "image": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/images/frames/cbsc/7std/science/chpt1/blk1/poster_bg_std07_science_ch1_bl01_pnl_002/poster_bg_std07_science_ch1_bl01_pnl_002_1_5x.webp",
             "text": "What Are The Primary Components of Food Discussed in the Classroom?",
             "options": [
                 {
-                    "title": "Water and Soil",
+                    "title": "Water and Soil 4",
                     "value": "Water and Soil"
                 },
                 {
-                    "title": "Carbohydrates, Proteins, and Fats",
+                    "title": "Carbohydrates, Proteins, and Fats3",
                     "value": "Carbohydrates, Proteins, and Fats"
                 },
                 {
-                    "title": "Gases and Liquids",
+                    "title": "Gases and Liquids 1",
                     "value": "Gases and Liquids"
                 },
                 {
-                    "title": "Metals and Plastics",
-                    "value": "Gases and Liquids"
+                    "title": "Metals and Plastics 2",
+                    "value": "Metals and Plastics"
                 }
             ],
-            "answer": "Water and Soil",
+            "answer": ["Gases and Liquids", "Metals and Plastics", "Carbohydrates, Proteins, and Fats", "Water and Soil" ],
             "audio": ""
         }
     }
