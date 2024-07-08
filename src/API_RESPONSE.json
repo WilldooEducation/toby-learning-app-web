@@ -1,0 +1,389 @@
+[
+    {
+      "panel_type": "story",
+      "panel_label": "panel 1 ",
+      "poster": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl1/poster/poster1_1x.webp",
+      "message": [
+        {
+          "messageid": 1,
+          "user": {
+            "avatar": "girl"
+          },
+          "message_text": "Hey, do you remember learning in Class VI that food is essential for all living organisms?",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl1/msg1_ana_trans.json",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl1/msg1_ana.mp3"
+        },
+        {
+          "user": {
+            "avatar": "boy"
+          },
+          "message_text": "Yes, Sara! We learned about the components of food like carbohydrates, proteins, fats, vitamins, and minerals, right?",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl1/msg2_roger.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl1/msg2_roger_trans.json"
+        }
+      ],
+      "question": [
+        {
+          "panel_type": "question",
+          "question_type": "choice",
+          "text": "What are the primary components of food discussed in the classroom?",
+          "options": [
+            {
+              "title": "Water and Soil ",
+              "value": "Water and Soil "
+            },
+            {
+              "title": "Carbohydrates, Proteins, and Fats",
+              "value": "Carbohydrates, Proteins, and Fats"
+            },
+            {
+              "title": "Gases and Liquids",
+              "value": "Gases and Liquids"
+            },
+            {
+              "title": "Metals and Plastics",
+              "value": "Gases and Liquids"
+            }
+          ],
+          "answer": "Water and Soil",
+          "audio": ""
+        }
+      ]
+    },
+    {
+      "panel_type": "story",
+      "panel_label": "panel 2  ",
+      "poster": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl2/poster/poster1_1x.webp",
+      "message": [
+        {
+          "messageid": 1,
+          "user": {
+            "avatar": "girl"
+          },
+          "message_text": "Exactly, those are called nutrients. They help us grow, repair damaged parts, and provide energy.",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl2/msg1_ana.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl2/msg1_ana_trans.json"
+        }
+      ],
+      "question": [
+        {
+          "panel_type": "question",
+          "question_type": "choice",
+          "text": "Which of the following is not a function of nutrients?",
+          "options": [
+            {
+              "title": "Growth",
+              "value": "Growth"
+            },
+            {
+              "title": "Repair",
+              "value": "Repair"
+            },
+            {
+              "title": "Generating electricity",
+              "value": "Generating electricity"
+            },
+            {
+              "title": "Providing energy",
+              "value": "Providing energy"
+            }
+          ],
+          "answer": "Generating electricity",
+          "audio": ""
+        }
+      ]
+    },
+    {
+      "panel_type": "story",
+      "panel_label": "panel 3 ",
+      "poster": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl3/poster/poster1_1x.webp",
+      "message": [
+        {
+          "messageid": 1,
+          "user": {
+            "avatar": "girl"
+          },
+          "message_text": "All living organisms require food, but did you know that not all organisms get their food the same way?",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl3/msg1_ana.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl3/msg1_ana_trans.json"
+        },
+        {
+          "user": {
+            "avatar": "boy"
+          },
+          "message_text": "Hmm, what do you mean?",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl3/msg2_roger.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl3/msg2_roger_trans.json"
+        }
+      ],
+      "question": [
+        {
+          "panel_type": "question",
+          "question_type": "choice",
+          "text": "How do different organisms obtain their food? ",
+          "options": [
+            {
+              "title": "All organisms produce their own food.",
+              "value": "All organisms produce their own food."
+            },
+            {
+              "title": "All organisms consume other organisms.",
+              "value": "All organisms consume other organisms."
+            },
+            {
+              "title": "Different organisms have different methods of obtaining food. ",
+              "value": "Different organisms have different methods of obtaining food. "
+            },
+            {
+              "title": "All organisms absorb nutrients from the soil.",
+              "value": "All organisms absorb nutrients from the soil."
+            }
+          ],
+          "answer": "Different organisms have different methods of obtaining food. ",
+          "audio": ""
+        }
+      ]
+    },
+    {
+      "panel_type": "story",
+      "panel_label": "panel 4 ",
+      "poster": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl4/poster/poster1_1x.webp",
+      "message": [
+        {
+          "message_id": 1,
+          "user": {
+            "avatar": "girl"
+          },
+          "message_text": "Plants are unique because they can make their own food using water, carbon dioxide, and minerals from their surroundings.",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl4/msg1_ana.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl4/msg1_ana_trans.json"
+        },
+        {
+          "user": {
+            "avatar": "boy"
+          },
+          "message_text": "Oh, so that’s why they don’t need to eat other organisms!",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl4/msg2_roger.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl4/msg2_roger_trans.json"
+        },
+        {
+          "user": {
+            "avatar": "girl"
+          },
+          "message_text": "Correct! This process is called autotrophic nutrition. Auto means self, and trophos means nourishment. So, plants are autotrophs because they nourish themselves.",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl4/msg3_ana.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl4/msg3_ana_trans.json"
+        }
+      ],
+      "question": [
+        {
+          "panel_type": "question",
+          "question_type": "boolean",
+          "text": "Animals are also capable of autotrophic nutrition.",
+          "options": [
+            {
+              "title": "True",
+              "value": "True"
+            },
+            {
+              "title": "False",
+              "value": "False"
+            }
+          ],
+          "answer": "False",
+          "audio": ""
+        }
+      ]
+    },
+    {
+      "panel_type": "story",
+      "panel_label": "panel 5",
+      "poster": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl5/poster/poster1_1x.webp",
+      "message": [
+        {
+          "user": {
+            "avatar": "boy"
+          },
+          "message_text": "That makes sense. And since animals can’t make their own food, we depend on plants or other animals that eat plants, right?",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl5/msg1_roger_trans.json",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl5/msg1_roger.mp3"
+        },
+        {
+          "message_id": 1,
+          "user": {
+            "avatar": "girl"
+          },
+          "message_text": "Exactly! Since animals eat plants or plant-eaters, they are called Heterotrophs. (heteros = other)",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl5/msg2_ana.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl5/msg2_ana_trans.json"
+        }
+      ],
+      "question": [
+        {
+          "panel_type": "question",
+          "question_type": "fillup",
+          "text": "Since animals cannot make their own food, they depend on plants or other animals, making them _______.",
+          "options": [
+            {
+              "title": "heterotrophs",
+              "value": "heterotrophs"
+            },
+            {
+              "title": "autotrophs",
+              "value": "autotrophs"
+            }
+          ],
+          "answer": "heterotrophs",
+          "audio": ""
+        }
+      ]
+    },
+    {
+      "panel_type": "story",
+      "panel_label": "panel 6",
+      "poster": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl6/poster/poster1_1x.webp",
+      "message": [
+        {
+          "user": {
+            "avatar": "boy"
+          },
+          "message_text": "Correct! This dependency shows how important plants are, not just for their food but also for the oxygen they release during photosynthesis.",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl6/msg1_roger_trans.json",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl6/msg1_roger.mp3"
+        }
+      ],
+      "question": [
+        {
+          "panel_type": "question",
+          "question_type": "choice",
+          "text": "Which of the following is not a product or requirement of photosynthesis? ",
+          "options": [
+            {
+              "title": "Oxygen",
+              "value": "Oxygen"
+            },
+            {
+              "title": "Carbon Dioxide",
+              "value": "Carbon Dioxide"
+            },
+            {
+              "title": "Water",
+              "value": "Water"
+            },
+            {
+              "title": "Nitrogen",
+              "value": "Nitrogen"
+            }
+          ],
+          "answer": "Nitrogen",
+          "audio": ""
+        }
+      ]
+    },
+    {
+      "panel_type": "story",
+      "panel_label": "panel 7",
+      "poster": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl7/poster/poster1_1x.webp",
+      "message": [
+        {
+          "user": {
+            "avatar": "boy"
+          },
+          "message_text": "So, all living things are connected through what they eat!",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl7/msg1_roger_trans.json",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl7/msg1_roger.mp3"
+        },
+        {
+          "message_id": 1,
+          "user": {
+            "avatar": "girl"
+          },
+          "message_text": "Yes, it's like a big food chain. We are all part of an ecosystem where plants play a crucial role.",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl7/msg2_ana.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl7/msg2_ana_trans.json"
+        }
+      ],
+      "question": [
+        {
+          "panel_type": "question",
+          "question_type": "boolean",
+          "text": "In an ecosystem, only the animals are important for maintaining balance.",
+          "options": [
+            {
+              "title": "True",
+              "value": "True"
+            },
+            {
+              "title": "False",
+              "value": "False"
+            }
+          ],
+          "answer": "False",
+          "audio": ""
+        }
+      ]
+    },
+    {
+      "panel_type": "story",
+      "panel_label": "panel 8",
+      "poster": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl8/poster/poster1_1x.webp",
+      "message": [
+        {
+          "user": {
+            "avatar": "boy"
+          },
+          "message_text": "Thanks, Sara! Understanding how plants and animals get their food really helps me appreciate nature more.",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl8/msg1_roger_trans.json",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl8/msg1_roger.mp3"
+        },
+        {
+          "message_id": 1,
+          "user": {
+            "avatar": "girl"
+          },
+          "message_text": "I agree, Dev. It’s fascinating how every organism plays a role in our ecosystem!",
+          "audio": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl8/msg2_ana.mp3",
+          "audio_trans": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/pnl8/msg2_ana_trans.json"
+        }
+      ],
+      "question": [
+        {
+          "panel_type": "question",
+          "question_type": "choice",
+          "text": "What does understanding how plants and animals get their food help us appreciate more? ",
+          "options": [
+            {
+              "title": "Only the animal kingdom",
+              "value": "Only the animal kingdom"
+            },
+            {
+              "title": "Nature and the balance of ecosystems ",
+              "value": "Nature and the balance of ecosystems "
+            },
+            {
+              "title": "The importance of water bodies alone",
+              "value": "The importance of water bodies alone"
+            },
+            {
+              "title": "The human role in nature",
+              "value": "The human role in nature"
+            }
+          ],
+          "answer": "Nature and the balance of ecosystems",
+          "audio": ""
+        }
+      ]
+    },
+    {
+      "panel_type": "summary",
+      "panel_label": "SUMMARY",
+      "poster": "https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/frames/cbse/7std/science/chpt1/blk1/sum/poster/poster1_1x.webp",
+      "message": [
+        {
+          "messageid": 1,
+          "message_text": "*Discussion Recap:* Explored the fundamental differences in how organisms obtain their food. \n   Concepts Covered: Delved into autotrophic and heterotrophic nutrition. \n  Role of Plants: Highlighted the essential role plants play in sustaining themselves and the entire ecosystem. \n  Interconnectedness: Emphasized the interconnectedness of all life through the food chain. ",
+          "audio": ""
+        }
+      ]
+    }
+  ]

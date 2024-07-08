@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Chapter from "@/components/chapter";
 import transcriptBlockOne from "@/block_1.json";
 import transcriptBlockTwo from "@/block_2.json";
-import block from "@/block-data.json";
+// import block from "@/block-data.json";
 import { useCallback, useEffect, useRef, useState } from "react";
 import anime from "animejs";
 import { ImagePreload } from "@/utils/imagePreload";
@@ -14,6 +14,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 let timeout: any;
 let stopAnimation: boolean = false;
 export default function Home() {
+  const block = JSON.parse(localStorage.getItem("block") || "");
   const router = useRouter();
   const easing = "easeInSine";
   const { query } = router;
@@ -44,7 +45,6 @@ export default function Home() {
   const [visitedIndex, setVisitedIndex] = useState<any>(0);
   const [hideContinueBtn, setHideContinueBtn] = useState<any>(false);
 
-  console.log(block, "QUERY");
   const duration = 500;
   const delay = 100;
 
@@ -113,12 +113,10 @@ export default function Home() {
     if (selectedIndex < block.length - 1) {
       _selectedIndex = selectedIndex + 1;
       setSelectedIndex(_selectedIndex);
+      debugger;
       if (_selectedIndex + 1 < block.length - 1) {
         if (block[_selectedIndex + 1].image !== block[_selectedIndex].image) {
-          if (
-            !_preloadImages[block[_selectedIndex + 1].panel_id] &&
-            currentScreenType !== "question"
-          ) {
+          if (!_preloadImages[block[_selectedIndex + 1].panel_id]) {
             const nextImage = ImagePreload(block[_selectedIndex + 1].image);
             setPreloadImages({
               ..._preloadImages,
@@ -193,13 +191,9 @@ export default function Home() {
     } else {
       el.style.backgroundColor = "#ff001166";
     }
-    console.log([...multiSelect, value], "SELECTED");
   };
 
   const onAnsReorder = (e: any, orderOptions: any) => {
-    console.log(e, selectBtn.current);
-    console.log(block[selectedIndex].question?.answer);
-    console.log(orderOptions.map((e: any) => e.value));
     const answer = block[selectedIndex].question?.answer;
     const givenAnser = orderOptions.map((e: any) => e.value);
     if (JSON.stringify(answer) === JSON.stringify(givenAnser)) {
@@ -377,7 +371,6 @@ export default function Home() {
 
   const onTimeChange = (e: any) => {
     const textSplit = block[selectedIndex].message_text.split(" ");
-    console.log(audioRef?.current?.currentTime, "EVENT: onTimeChange");
     const selectedWord = block[selectedIndex].audio_transcript.findIndex(
       e =>
         audioRef?.current?.currentTime >= e.start &&
@@ -385,19 +378,19 @@ export default function Home() {
     );
     if (selectedWordIndex === selectedWord) return;
     selectedWordIndex = selectedWord;
-    if (selectedWord != -1)
-      console.log(
-        block[selectedIndex].audio_transcript[selectedWord].Word,
-        selectedIndex,
-        "EVENT: onTimeChange"
-      );
+    // if (selectedWord != -1)
+    //   console.log(
+    //     block[selectedIndex].audio_transcript[selectedWord].Word,
+    //     selectedIndex,
+    //     "EVENT: onTimeChange"
+    //   );
     if (textSplit[selectedWord]?.trim())
       textSplit[selectedWord] = `<span>${textSplit[selectedWord]}</span>`;
-    console.log(textSplit.join(" "), selectedWord);
+    // console.log(textSplit.join(" "), selectedWord);
     messageText.current.innerHTML = textSplit.join(" ");
   };
   const onPlaybackEnd = (e: any) => {
-    console.log(e, "EVENT:onPlaybackEnd");
+    // console.log(e, "EVENT:onPlaybackEnd");
   };
 
   useEffect(() => {
@@ -409,7 +402,7 @@ export default function Home() {
       });
     }
     // audioRef.current = preloadAudio[selectedIndex] || audioRef.current;
-    console.log(selectedIndex, visitedIndex, "visitedIndex");
+    // console.log(selectedIndex, visitedIndex, "visitedIndex");
     if (audioRef && audioRef.current) {
       audioRef.current.ontimeupdate = onTimeChange;
       audioRef.current.onended = onPlaybackEnd;
@@ -457,12 +450,12 @@ export default function Home() {
     return result;
   };
 
-  console.log(
-    preloadImages,
-    preloadAudio,
-    block[selectedIndex].panel_type,
-    "preloadImages"
-  );
+  // console.log(
+  //   preloadImages,
+  //   preloadAudio,
+  //   block[selectedIndex].panel_type,
+  //   "preloadImages"
+  // );
 
   const panelBlock = (
     <div className={styles.info_container}>
@@ -598,19 +591,19 @@ export default function Home() {
             {currentScreenType === "question" &&
               block[selectedIndex]?.question?.question_type !== "reorder" && (
                 <div className={styles.option_block}>
-                  {block[selectedIndex]?.question?.question_type === "choice" &&
-                    questionOptions?.map((e: any, i: any) => (
-                      <div
-                        ref={el => (selectBtn.current[i] = el)}
-                        onClick={() =>
-                          onSelectAns(selectBtn.current[i], i, e.value)
-                        }
-                        className={[styles.option_item].join()}
-                        key={i}
-                      >
-                        {e.title}
-                      </div>
-                    ))}
+                  {(['choice', 'boolean', 'fillup'].indexOf(block[selectedIndex]?.question?.question_type) != -1 &&
+                      questionOptions?.map((e: any, i: any) => (
+                        <div
+                          ref={el => (selectBtn.current[i] = el)}
+                          onClick={() =>
+                            onSelectAns(selectBtn.current[i], i, e.value)
+                          }
+                          className={[styles.option_item].join()}
+                          key={i}
+                        >
+                          {e.title}
+                        </div>
+                      )))}
                   {block[selectedIndex]?.question?.question_type ===
                     "multichoice" &&
                     questionOptions?.map((e: any, i: any) => (
@@ -636,7 +629,7 @@ export default function Home() {
               block[selectedIndex]?.question?.question_type === "reorder" && (
                 <DragDropContext
                   onDragEnd={(e: any) => {
-                    console.log(e);
+                    // console.log(e);
                     if (questionOptions && e.source && e.destination) {
                       const copyExisting = [...questionOptions];
                       const reOrderList = reorder(
