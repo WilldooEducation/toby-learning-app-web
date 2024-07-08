@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import styles from "./block.module.scss";
 import { useRouter } from "next/router";
@@ -14,8 +12,10 @@ let stopAnimation: boolean = false;
 export default function Home() {
   let block: any = blockData;
   const easing = "easeInSine";
-  if (typeof window !== "undefined") {
+  try {
     block = localStorage.getItem("favoriteNumber") || ""
+  } catch (error) {
+    
   }
   
   const imageFrame = useRef<any>(null);
