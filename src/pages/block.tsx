@@ -1,25 +1,23 @@
+"use client";
+
 import Image from "next/image";
-import { Button } from "@material-tailwind/react";
 import styles from "./block.module.scss";
 import { useRouter } from "next/router";
-import Chapter from "@/components/chapter";
-import transcriptBlockOne from "@/block_1.json";
-import transcriptBlockTwo from "@/block_2.json";
-// import block from "@/block-data.json";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import anime from "animejs";
+import blockData from "@/block-data.json"
 import { ImagePreload } from "@/utils/imagePreload";
 import { AudioPreload } from "@/utils/audioPreload";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 let timeout: any;
 let stopAnimation: boolean = false;
 export default function Home() {
-  const block = JSON.parse(localStorage.getItem("block") || "");
-  const router = useRouter();
+  let block: any = blockData;
   const easing = "easeInSine";
-  const { query } = router;
-  const timer = (ms: any) => new Promise(res => setTimeout(res, ms));
-
+  if (typeof window !== "undefined") {
+    block = localStorage.getItem("favoriteNumber") || ""
+  }
+  
   const imageFrame = useRef<any>(null);
   const messageText = useRef<any>(null);
   const backgroundImage = useRef<any>(null);
@@ -113,7 +111,6 @@ export default function Home() {
     if (selectedIndex < block.length - 1) {
       _selectedIndex = selectedIndex + 1;
       setSelectedIndex(_selectedIndex);
-      debugger;
       if (_selectedIndex + 1 < block.length - 1) {
         if (block[_selectedIndex + 1].image !== block[_selectedIndex].image) {
           if (!_preloadImages[block[_selectedIndex + 1].panel_id]) {
