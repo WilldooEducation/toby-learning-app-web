@@ -372,7 +372,7 @@ export default function Home() {
   const onTimeChange = (e: any) => {
     const textSplit = block[selectedIndex].message_text.split(" ");
     const selectedWord = block[selectedIndex].audio_transcript.findIndex(
-      e =>
+      (e: any) =>
         audioRef?.current?.currentTime >= e.start &&
         audioRef?.current?.currentTime <= e.end
     );
