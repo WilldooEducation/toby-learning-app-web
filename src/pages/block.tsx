@@ -1,22 +1,18 @@
 import Image from "next/image";
 import styles from "./block.module.scss";
-import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import anime from "animejs";
-import blockData from "@/block-data.json"
 import { ImagePreload } from "@/utils/imagePreload";
 import { AudioPreload } from "@/utils/audioPreload";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import GlobalContext from "@/utils/global-context";
 let timeout: any;
 let stopAnimation: boolean = false;
 export default function Home() {
-  let block: any = blockData;
+  const global = useContext(GlobalContext)
+  console.log(global)
+  const block: any = global.data;
   const easing = "easeInSine";
-  try {
-    block = localStorage.getItem("favoriteNumber") || ""
-  } catch (error) {
-    
-  }
   
   const imageFrame = useRef<any>(null);
   const messageText = useRef<any>(null);

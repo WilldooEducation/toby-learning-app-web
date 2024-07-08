@@ -2,9 +2,12 @@ import Image from "next/image";
 import { Button } from "@material-tailwind/react";
 import styles from "./index.module.scss";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import GlobalContext from "@/utils/global-context";
 
 export default function Home() {
   const router = useRouter();
+  const global = useContext(GlobalContext);
 
   const navigateToBlock = async () => {
     const storyData = await fetch(
@@ -57,6 +60,9 @@ export default function Home() {
       }
     }
     localStorage.setItem("block", JSON.stringify(blockData));
+    global.update({
+      data: blockData,
+    });
     router.push("/block");
   };
 
