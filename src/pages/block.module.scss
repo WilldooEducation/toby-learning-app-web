@@ -203,7 +203,6 @@
         left: -27px;
       }
       .message_block {
-        background-color: #f01;
         background-color: #00000050;
         height: 100%;
         width: 100%;
@@ -288,28 +287,76 @@
             }
           }
         }
-        .button_block {
-          width: 100%;
-          padding: 15px;
-          margin-bottom: 50px;
-          transition: all 0.35s ease-in-out;
-          &.show {
-            visibility: visible;
-          }
-          &.hide {
-            visibility: hidden;
-          }
-          button {
-            background: rgba(255, 255, 255, 0.25);
-            padding: 10px 50px;
-            border-radius: 8px;
-            width: 100%;
-            color: #fff;
-            backdrop-filter: blur(100px);
-          }
-        }
       }
     }
+  }
+}
+
+.summary_container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1;
+  .summary_message_container {
+    background-color: #00000050;
+    height: auto;
+    width: 90%;
+    border-radius: 20px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.40);
+    backdrop-filter: blur(75px);
+    padding: 20px;
+    .heading {
+      color: #fff;
+      text-align: center;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 170%; /* 30.6px */
+      letter-spacing: 0.54px;
+      padding-bottom: 10px;
+    }
+    .summary_message_text {
+      padding-top: 20px;
+      padding-bottom: 10px;
+      color: #fff;
+    }
+  }
+
+  .summary_btn_container {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+  }
+}
+
+
+.button_block {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 50px;
+  transition: all 0.35s ease-in-out;
+  &.show {
+    visibility: visible;
+  }
+  &.hide {
+    visibility: hidden;
+  }
+  button {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 10px 50px;
+    border-radius: 8px;
+    width: 100%;
+    color: #fff;
+    backdrop-filter: blur(100px);
   }
 }
 

@@ -6,14 +6,16 @@ import { ImagePreload } from "@/utils/imagePreload";
 import { AudioPreload } from "@/utils/audioPreload";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import GlobalContext from "@/utils/global-context";
+import { useRouter } from "next/navigation";
 let timeout: any;
 let stopAnimation: boolean = false;
 export default function Home() {
-  const global = useContext(GlobalContext)
-  console.log(global)
+  const router = useRouter();
+  const global = useContext(GlobalContext);
+  console.log(global);
   const block: any = global.data;
   const easing = "easeInSine";
-  
+
   const imageFrame = useRef<any>(null);
   const messageText = useRef<any>(null);
   const backgroundImage = useRef<any>(null);
@@ -73,6 +75,7 @@ export default function Home() {
     let _selectedIndex = selectedIndex;
     let _preloadImages = preloadImages;
     let _preloadAudio = preloadAudio;
+    debugger;
 
     animateContinueButton();
 
@@ -86,6 +89,11 @@ export default function Home() {
       setCurrentScreenType("question");
       setHideContinueBtn(true);
       setQuestionOptions(block[_selectedIndex].question?.options || []);
+      return;
+    }
+
+    if (block[_selectedIndex + 1].panel_type === "summary") {
+      router.push("/summary");
       return;
     }
 
@@ -584,19 +592,21 @@ export default function Home() {
             {currentScreenType === "question" &&
               block[selectedIndex]?.question?.question_type !== "reorder" && (
                 <div className={styles.option_block}>
-                  {(['choice', 'boolean', 'fillup'].indexOf(block[selectedIndex]?.question?.question_type) != -1 &&
-                      questionOptions?.map((e: any, i: any) => (
-                        <div
-                          ref={el => (selectBtn.current[i] = el)}
-                          onClick={() =>
-                            onSelectAns(selectBtn.current[i], i, e.value)
-                          }
-                          className={[styles.option_item].join()}
-                          key={i}
-                        >
-                          {e.title}
-                        </div>
-                      )))}
+                  {["choice", "boolean", "fillup"].indexOf(
+                    block[selectedIndex]?.question?.question_type
+                  ) != -1 &&
+                    questionOptions?.map((e: any, i: any) => (
+                      <div
+                        ref={el => (selectBtn.current[i] = el)}
+                        onClick={() =>
+                          onSelectAns(selectBtn.current[i], i, e.value)
+                        }
+                        className={[styles.option_item].join()}
+                        key={i}
+                      >
+                        {e.title}
+                      </div>
+                    ))}
                   {block[selectedIndex]?.question?.question_type ===
                     "multichoice" &&
                     questionOptions?.map((e: any, i: any) => (
