@@ -5,6 +5,7 @@
   flex-direction: column;
   max-width: 450px;
   flex: 1;
+  font-size: 1.3rem;
   background-color: #fff;
 }
 
@@ -230,7 +231,6 @@
           align-items: center;
           p {
             font-weight: 600;
-            font-size: 1.375rem;
             text-align: center;
             color: #fff;
             line-height: 170%; /* 37.4px */
@@ -276,6 +276,8 @@
             color: #fff;
             width: 100%;
             padding: 20px;
+            font-size: .9em;
+            text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
