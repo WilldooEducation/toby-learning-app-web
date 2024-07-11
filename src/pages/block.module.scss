@@ -206,6 +206,7 @@
         background-color: #00000050;
         height: 100%;
         width: 100%;
+        padding-top: 25px;
         border-radius: 20px 20px 0px 0px;
         display: flex;
         align-items: center;
@@ -232,7 +233,30 @@
             font-weight: 600;
             text-align: center;
             color: #fff;
-            font-size: 1.375em;
+            /* Media Query for Mobile Devices */
+            @media (max-width: 375px) {
+              font-size: 1em;
+            }
+
+            /* Media Query for low resolution  Tablets, Ipads */
+            @media (min-width: 376px) and (max-width: 767px) {
+              font-size: 1.275em;
+            }
+
+            /* Media Query for Tablets Ipads portrait mode */
+            @media (min-width: 768px) and (max-width: 1024px) {
+              font-size: 1.375em;
+            }
+
+            /* Media Query for Laptops and Desktops */
+            @media (min-width: 1025px) and (max-width: 1280px) {
+              font-size:  1.375em;
+            }
+
+            /* Media Query for Large screens */
+            @media (min-width: 1281px) {
+              font-size: 1.5em;
+            }
             line-height: 170%; /* 37.4px */
             letter-spacing: 0.66px;
             padding: 0 27px;
@@ -312,7 +336,7 @@
     align-items: stretch;
     justify-content: center;
     flex-direction: column;
-    background: rgba(0, 0, 0, 0.40);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(75px);
     padding: 20px;
     .heading {
@@ -338,7 +362,6 @@
     width: 100%;
   }
 }
-
 
 .button_block {
   width: 100%;
