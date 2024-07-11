@@ -28,7 +28,7 @@ export default function Summary() {
 
   return (
     <>
-      <div className={styles.main}>
+      {block[selectedIndex] && <div className={styles.main}>
         <div className={styles.splash_container}>
           <div className={styles.overlay_image}></div>
           <div
@@ -67,7 +67,7 @@ export default function Summary() {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </>
   );
 }
