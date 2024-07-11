@@ -75,11 +75,10 @@ export default function Home() {
     let _selectedIndex = selectedIndex;
     let _preloadImages = preloadImages;
     let _preloadAudio = preloadAudio;
-    debugger;
-
+    
     animateContinueButton();
 
-    if (block[_selectedIndex].question && currentScreenType === "story") {
+    if (block[_selectedIndex].question && currentScreenType === "story" && !(visitedIndex > _selectedIndex)) {
       messageText.current.innerHTML = ``;
       audioRef.current.pause();
       await animateToQuestion();
