@@ -6,6 +6,7 @@ import { Open_Sans } from "next/font/google";
 import GlobalContext from "../utils/global-context";
 import blockData from "@/block-data.json";
 import { useState } from "react";
+import ResultContext from "@/utils/result-context";
 
 const openSans = Open_Sans({
   weight: "400",
@@ -15,28 +16,39 @@ const openSans = Open_Sans({
 export default function App({ Component, pageProps }: AppProps) {
   const [state, setState] = useState({
     data: blockData,
-    update
+    update,
   });
+
+  const [result, setResult] = useState({
+    result: {},
+    updateResult,
+  });
+
+  function updateResult(data: any) {
+    setResult(Object.assign({}, result, data));
+  }
 
   function update(data: any) {
     setState(Object.assign({}, state, data));
   }
   return (
     <GlobalContext.Provider value={state}>
-      <ThemeProvider>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-          />
-        </Head>
-        <main
-          className={openSans.className}
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          <Component {...pageProps} className={openSans.className} />
-        </main>
-      </ThemeProvider>
+      <ResultContext.Provider value={result}>
+        <ThemeProvider>
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+            />
+          </Head>
+          <main
+            className={openSans.className}
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
+            <Component {...pageProps} className={openSans.className} />
+          </main>
+        </ThemeProvider>
+      </ResultContext.Provider>
     </GlobalContext.Provider>
   );
 }

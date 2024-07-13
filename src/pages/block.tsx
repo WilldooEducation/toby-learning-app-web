@@ -7,12 +7,14 @@ import { AudioPreload } from "@/utils/audioPreload";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import GlobalContext from "@/utils/global-context";
 import { useRouter } from "next/navigation";
+import ResultContext from "@/utils/result-context";
 let timeout: any;
 let stopAnimation: boolean = false;
 export default function Home() {
   const router = useRouter();
   const global = useContext(GlobalContext);
-  console.log(global);
+  const result = useContext<any>(ResultContext);
+  console.log(global, result, 'result');
   const block: any = global.data;
   const easing = "easeInSine";
 
@@ -75,10 +77,14 @@ export default function Home() {
     let _selectedIndex = selectedIndex;
     let _preloadImages = preloadImages;
     let _preloadAudio = preloadAudio;
-    
+
     animateContinueButton();
 
-    if (block[_selectedIndex].question && currentScreenType === "story" && !(visitedIndex > _selectedIndex)) {
+    if (
+      block[_selectedIndex].question &&
+      currentScreenType === "story" &&
+      !(visitedIndex > _selectedIndex)
+    ) {
       messageText.current.innerHTML = ``;
       audioRef.current.pause();
       await animateToQuestion();
@@ -168,8 +174,10 @@ export default function Home() {
     if (block[selectedIndex].question?.answer === value) {
       setHideContinueBtn(false);
       el.style.backgroundColor = "#8bc34a66";
+      storeResult(block[selectedIndex].panel_id, 1)
     } else {
       el.style.backgroundColor = "#ff001166";
+      storeResult(block[selectedIndex].panel_id, 0)
     }
   };
 
@@ -188,9 +196,16 @@ export default function Home() {
       }
 
       el.style.backgroundColor = "#8bc34a66";
+      storeResult(block[selectedIndex].panel_id, 1)
     } else {
       el.style.backgroundColor = "#ff001166";
+      storeResult(block[selectedIndex].panel_id, 0)
     }
+  };
+
+  const storeResult = (id: any, value: any) => {
+    if (result.result[id] === undefined) result.result[id] = value;
+    result.updateResult(result.result);
   };
 
   const onAnsReorder = (e: any, orderOptions: any) => {
