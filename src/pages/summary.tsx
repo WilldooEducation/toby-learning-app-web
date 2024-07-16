@@ -80,6 +80,20 @@ export default function Summary() {
                   You’ve completed the quiz with a perfect score and earned a
                   Flawless finisher Batch
                 </h4>
+                <div
+                  className={[
+                    styles.result_batch,
+                    correctAns !== total ? styles.result_fail : "",
+                  ].join(" ")}
+                >
+                  <Image
+                    key={"result_image"}
+                    src={`https://toby-app-dev-ui.s3.ap-south-1.amazonaws.com/assert/images/batch/highest_streak/highest_streak_1x.webp`}
+                    alt="result-batch"
+                    width={140}
+                    height={140}
+                  ></Image>
+                </div>
                 <div className={styles.reslut_block}>
                   {Object.entries(result).map(e => {
                     if (e[1])
