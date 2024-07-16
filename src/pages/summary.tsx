@@ -33,11 +33,10 @@ export default function Summary() {
     // setTotal(Object.entries(result).filter(e=>e[1]).length.toString())
   }, []);
 
-  const correctAns = Object.entries(result)
-    ?.filter(e => e[1])
+  const correctAns = Object.entries(result.result)
+    ?.filter(e => e[1] === 1)
     .length.toString();
-  const total = Object.entries(result)?.length.toString();
-
+  const total = Object.entries(result.result)?.length.toString();
   return (
     <>
       {block[selectedIndex] && (
@@ -95,7 +94,7 @@ export default function Summary() {
                   ></Image>
                 </div>
                 <div className={styles.reslut_block}>
-                  {Object.entries(result).map(e => {
+                  {Object.entries(result.result).map(e => {
                     if (e[1])
                       return (
                         <Image
@@ -127,6 +126,7 @@ export default function Summary() {
                     if (currentPage === "summary") {
                       setCurrentPage("result");
                     } else {
+                      result.updateResult({result: {}})
                       router.push("/");
                     }
                   }}

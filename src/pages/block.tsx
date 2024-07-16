@@ -205,7 +205,7 @@ export default function Home() {
 
   const storeResult = (id: any, value: any) => {
     if (result.result[id] === undefined) result.result[id] = value;
-    result.updateResult(result.result);
+    result.updateResult({result: result.result});
   };
 
   const onAnsReorder = (e: any, orderOptions: any) => {
